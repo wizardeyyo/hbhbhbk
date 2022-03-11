@@ -13,6 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class Message {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -20,7 +21,8 @@ public class Message {
     private String tag;
 
     public Message(String text, String tag) {
-
+        this.text = text;
+        this.tag = tag;
     }
 }
 
