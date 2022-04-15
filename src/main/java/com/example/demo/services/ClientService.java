@@ -20,4 +20,7 @@ public class ClientService {
     public List<Client> findAll() {
         return clientRepository.findAll();
     }
+
+    public void removeById(Long id) {
+    }
 }

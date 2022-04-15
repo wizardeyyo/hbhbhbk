@@ -35,13 +35,13 @@ public class MainController {
 
 
     @PostMapping("/addOrder")
-    public String addGroup(@ModelAttribute("order") Order order){
+    public String addGroup(@ModelAttribute("order") Order order) {
         orderedService.save(order);
         return "redirect:/main/allOrders";
     }
 
     @GetMapping("/allOrders")
-    public String allOrders(Model model){
+    public String allOrders(Model model) {
         Order order = new Order();
         List<Employee> employees = employeeService.findAll();
         List<Client> clients = clientService.findAll();
@@ -80,11 +80,56 @@ public class MainController {
     }
 
     @GetMapping("/deleteOrder/{id}")
-    public String deleteOrder(@PathVariable("id") Long id){
+    public String deleteOrder(@PathVariable("id") Long id) {
         orderedService.removeById(id);
         return "redirect:/main/allOrders";
     }
 
+    @PostMapping("/addClient")
+    public String addGroup(@ModelAttribute("client") Client client) {
+        orderService.save(client);
+        return "redirect:/main/allClients";
+    }
+
+    @GetMapping("/allClients")
+    public String allClients(Model model) {
+        Client client = new Client();
+
+        model.addAttribute("client", client);
+
+//        Employee employee = Employee
+//                .builder()
+//                .surname("clienName")
+//                .build();
+//
+//        employeeService.save(employee);
+//
+//        Client client = Client
+//                .builder()
+//                .clientName("clientName")
+//                .build();
+//
+//        clientService.save(client);
+//
+//        Order order = Order
+//                .builder()
+//                .client(client)
+//                .employee(employee)
+//                .paymentDate(LocalDate.now())
+//                .receiverAddress("receiverAddress")
+//                .receiverName("receiverName")
+//                .shippingDate(LocalDate.now())
+//                .build();
+//        System.out.println(order);
+
+        return "admin/orders";
+    }
+
+    @GetMapping("/deleteClients/{id}")
+    public String deleteClient(@PathVariable("id") Long id) {
+        clientService.removeById(id);
+        return "redirect:/main/allClients";
+    }
 }
 
 
