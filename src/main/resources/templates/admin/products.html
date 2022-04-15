@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table class=" table table-hover">
+
+    <h3>Добавить товар</h3>
+    <div class="container">
+        <form th:action="@{/main/addProduct}"
+              th:object="${product}" method="post">
+            <label>
+                <input th:field="${product.id}" placeholder="id" hidden>
+            </label>
+
+            <label>
+                <select th:field="${product.supplier}">
+                    <option value=""> suppliers </option>
+                    <option th:each="supplier : ${suppliers}"
+                            th:text="${supplier.brand}"
+                            th:value="${supplier.getId()}">
+                    </option>
+                </select>
+            </label>
+
+            <label>
+                <select th:field="${product.type}">
+                    <option value=""> client </option>
+                    <option th:each="type : ${types}"
+                            th:text="${types.category}"
+                            th:value="${type.getId()}">
+                    </option>
+                </select>
+            </label>
+
+            <label>
+                <input type="date" th:field="${product.brand}" placeholder="shippingDate">
+            </label>
+
+            <label>
+                <input type="date" th:field="${product.price}" placeholder="paymentDate">
+            </label>
+
+            <label>
+                <input th:field="${product.inStock}" placeholder="receiverName">
+            </label>
+
+            <label>
+                <input th:field="${product.unit}" placeholder="receiverAddress">
+            </label>
+
+            <button type="submit">Добавить</button>
+        </form>
+    </div>
+
+
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Сотрудник</th>
+        <th>Клиент</th>
+        <th>Дата отгрузки</th>
+        <th>Дата платежа</th>
+        <th>Покучатель</th>
+        <th>Адрес получателя</th>
+        <th>Действие</th>
+    </tr>
+    </thead>
+    <span>
+        <tbody>
+        <tr th:each="order : ${orders}">
+            <td th:text="${order.id}"></td>
+            <td th:text="${order.employee.surname}"></td>
+            <td th:text="${order.client.clientName}"></td>
+            <td th:text="${order.shippingDate}"></td>
+            <td th:text="${order.paymentDate}"></td>
+            <td th:text="${order.receiverName}"></td>
+            <td th:text="${order.receiverAddress}"></td>
+            <td>
+            <a th:href="@{'/main/deleteOrder/' + ${order.id}}" th:text="Удалить"></a>
+        </td>
+    </span>
+    </tr>
+    </tbody>
+    </span>
+</table>
+
+<br>
+</body>
+</html>

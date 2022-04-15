@@ -48,30 +48,32 @@ public class MainController {
 
         model.addAttribute("order", order);
 
-//        Employee employee = Employee
-//                .builder()
-//                .surname("clienName")
-//                .build();
-//
-//        employeeService.save(employee);
-//
-//        Client client = Client
-//                .builder()
-//                .clientName("clientName")
-//                .build();
-//
-//        clientService.save(client);
-//
-//        Order order = Order
-//                .builder()
-//                .client(client)
-//                .employee(employee)
-//                .paymentDate(LocalDate.now())
-//                .receiverAddress("receiverAddress")
-//                .receiverName("receiverName")
-//                .shippingDate(LocalDate.now())
-//                .build();
-//        System.out.println(order);
+        Employee employee = Employee
+                .builder()
+                .surname("clienName")
+                .build();
+
+        employeeService.save(employee);
+
+        Client client = Client
+                .builder()
+                .clientName("clientName")
+                .build();
+
+        clientService.save(client);
+
+        Order order2 = Order
+                .builder()
+                .client(client)
+                .employee(employee)
+                .paymentDate(LocalDate.now())
+                .receiverAddress("receiverAddress")
+                .receiverName("receiverName")
+                .shippingDate(LocalDate.now())
+                .build();
+
+        orderService.save(order2);
+
 
         model.addAttribute("orders", orderService.findAll());
         model.addAttribute("clients", clients);
@@ -116,10 +118,13 @@ public class MainController {
 //                .build();
 //        System.out.println(order);
 
-        return "admin/orders";
+        return "admin/clients";
     }
 
-    @GetMapping("/deleteClients/{id}")
+
+
+    // удалялки
+    @GetMapping("/deleteClient/{id}")
     public String deleteClient(@PathVariable("id") Long id) {
         clientService.deleteById(id);
         return "redirect:/main/allClients";

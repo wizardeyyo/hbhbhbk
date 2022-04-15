@@ -12,44 +12,39 @@
         <form th:action="@{/main/addClient}"
               th:object="${client}" method="post">
             <label>
-                <input th:field="${Client.id}" placeholder="id" hidden>
+                <input th:field="${client.id}" placeholder="id" hidden>
+            </label>
+            <label>
+                <input th:field="${client.brand}" placeholder="brand">
+            </label>
+            <label>
+                <input th:field="${client.address}" placeholder="address">
+            </label>
+            <label>
+                <input th:field="${client.clientName}" placeholder="client name">
             </label>
 
             <label>
-                    <option value=""> employee </option>
-                    <option th:each="address : ${employees}"
-                            th:text="${employee.surname}"
-                            th:value="${employee.getId()}">
-                    </option>
-                </select>
+                <input th:field="${client.email}" placeholder="e-mail">
             </label>
-
             <label>
-                <select th:field="${order.client}">
-                    <option value=""> client </option>
-                    <option th:each="client : ${clients}"
-                            th:text="${client.clientName}"
-                            th:value="${client.getId()}">
-                    </option>
-                </select>
+                <input th:field="${client.phone}" placeholder="phone">
             </label>
-
             <label>
-                <input type="date" th:field="${order.shippingDate}" placeholder="shippingDate">
+                <input th:field="${client.position}" placeholder="position">
             </label>
-
             <label>
-                <input type="date" th:field="${order.paymentDate}" placeholder="paymentDate">
+                <input th:field="${client.numberOfContract}" placeholder="number of contract">
             </label>
-
             <label>
-                <input th:field="${order.receiverName}" placeholder="receiverName">
+                <input th:field="${client.price}" placeholder="price">
             </label>
-
             <label>
-                <input th:field="${order.receiverAddress}" placeholder="receiverAddress">
+                <input th:field="${client.workingConditions}" placeholder="working conditions">
             </label>
-
+            <label>
+                <input th:field="${client.notes}" placeholder="otes">
+            </label>
             <button type="submit">Добавить</button>
         </form>
     </div>
@@ -58,27 +53,34 @@
     <thead>
     <tr>
         <th>ID</th>
-        <th>Сотрудник</th>
-        <th>Клиент</th>
-        <th>Дата отгрузки</th>
-        <th>Дата платежа</th>
-        <th>Покучатель</th>
-        <th>Адрес получателя</th>
-        <th>Действие</th>
+        <th>Брэнд</th>
+        <th>Адрес</th>
+        <th>Имя Клиента</th>
+        <th>e-mail</th>
+        <th>Номер телефона</th>
+        <th>Должность</th>
+        <th>Номер контракта</th>
+        <th>Цены</th>
+        <th>Условия работы</th>
+        <th>Примечания</th>
     </tr>
     </thead>
     <span>
         <tbody>
         <tr th:each="client : ${client}">
             <td th:text="${client.id}"></td>
-            <td th:text="${client.address}"></td>
             <td th:text="${client.brand}"></td>
+            <td th:text="${client.address}"></td>
             <td th:text="${client.clientName}"></td>
             <td th:text="${client.email}"></td>
-            <td th:text="${client.receiverName}"></td>
-            <td th:text="${client.receiverAddress}"></td>
+            <td th:text="${client.phone}"></td>
+            <td th:text="${client.position}"></td>
+            <td th:text="${client.numberOfContracts}"></td>
+            <td th:text="${client.price}"></td>
+            <td th:text="${client.workingConditions}"></td>
+            <td th:text="${client.notes}"></td>
             <td>
-            <a th:href="@{'/main/deleteOrder/' + ${order.id}}" th:text="Удалить"></a>
+            <a th:href="@{'/main/deleteClient/' + ${Client.id}}" th:text="Удалить"></a>
         </td>
     </span>
     </tr>
