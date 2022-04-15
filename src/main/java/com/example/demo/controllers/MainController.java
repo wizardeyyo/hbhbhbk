@@ -1,8 +1,6 @@
 package com.example.demo.controllers;
 
-import com.example.demo.entities.Client;
-import com.example.demo.entities.Employee;
-import com.example.demo.entities.Order;
+import com.example.demo.entities.*;
 import com.example.demo.services.*;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.weaver.ast.Or;
@@ -40,6 +38,33 @@ public class MainController {
         return "redirect:/main/allOrders";
     }
 
+    @PostMapping("/addClient")
+    public String addClient(@ModelAttribute("client") Client client) {
+        clientService.save(client);
+        return "redirect:/main/allClients";
+    }
+
+    @PostMapping("/addEmployee")
+    public String addEmployee(@ModelAttribute("employee") Employee employee) {
+        employeeService.save(employee);
+        return "redirect:/main/allEmployees";
+    }
+
+    @PostMapping("/addProduct")
+    public String addProduct(@ModelAttribute("product") Product product) {
+        productService.save(product);
+        return "redirect:/main/allProducts";
+    }
+
+    @PostMapping("/addSupplier")
+    public String addSupplier(@ModelAttribute("supplier") Supplier supplier) {
+        supplierService.save(supplier);
+        return "redirect:/main/allSuppliers";
+    }
+
+
+
+
     @GetMapping("/allOrders")
     public String allOrders(Model model) {
         Order order = new Order();
@@ -50,7 +75,7 @@ public class MainController {
 
         Employee employee = Employee
                 .builder()
-                .surname("clienName")
+                .surname("clientName")
                 .build();
 
         employeeService.save(employee);
@@ -81,11 +106,7 @@ public class MainController {
         return "admin/orders";
     }
 
-    @PostMapping("/addClient")
-    public String addClient(@ModelAttribute("client") Client client) {
-        clientService.save(client);
-        return "redirect:/main/allClients";
-    }
+
 
     @GetMapping("/allClients")
     public String allClients(Model model) {
@@ -120,6 +141,33 @@ public class MainController {
 
         return "admin/clients";
     }
+
+
+     @GetMapping("/allProducts")
+     public String allProducts(Model model){
+         Product product = new Product();
+         List<Product> products = productService.findAll();
+         model.addAttribute("product", product);
+         model.addAttribute("products", products);
+        return "admin/products";
+     }
+
+     @GetMapping("/allSuppliers")
+     public String allSuppliers(Model model){
+         Supplier supplier = new Supplier();
+         List<Supplier> suppliers = supplierService.findAll();
+         model.addAttribute("supplier", supplier);
+         model.addAttribute("suppliers", suppliers);
+         return "admin/suppliers";
+     }
+     @GetMapping("/allEmployees")
+     public String allEmployees(Model model){
+        Employee employee = new Employee();
+        List<Employee> employees = employeeService.findAll();
+        model.addAttribute("employee", employee);
+        model.addAttribute("employees", employees);
+         return "admin/employees";
+     }
 
 
 
