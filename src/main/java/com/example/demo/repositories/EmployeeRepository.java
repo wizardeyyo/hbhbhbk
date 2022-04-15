@@ -1,9 +1,11 @@
 package com.example.demo.repositories;
 
-import com.example.demo.Entities.Employee;
+import com.example.demo.entities.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
-public interface EmployeeRepository extends JpaRepository<Employee, UUID> {
+@Repository
+public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 }

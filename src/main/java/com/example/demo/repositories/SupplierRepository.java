@@ -1,9 +1,11 @@
 package com.example.demo.repositories;
 
-import com.example.demo.Entities.Supplier;
+import com.example.demo.entities.Supplier;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
-public interface SupplierRepository extends JpaRepository<Supplier, UUID> {
+@Repository
+public interface SupplierRepository extends JpaRepository<Supplier, Long> {
 }

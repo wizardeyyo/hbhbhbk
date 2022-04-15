@@ -1,48 +1,39 @@
-package com.example.demo.Entities;
+package com.example.demo.entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-@Table(name = "employees")
+@Table(name = "types")
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
 @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
-public class Employee {
+@BatchSize(size=20)
+public class Type {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String surname;
+    private String category;
 
-    private String name;
-
-    private String position;
-
-    private LocalDate dateOfBirth;
-
-    private String address;
-
-    private String  phone;
-
-    private String email;
+    private String description;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Employee employee = (Employee) o;
-        return id != null && Objects.equals(id, employee.id);
+        Type type = (Type) o;
+        return id != null && Objects.equals(id, type.id);
     }
 
     @Override

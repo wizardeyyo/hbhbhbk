@@ -1,49 +1,41 @@
-package com.example.demo.Entities;
+package com.example.demo.entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "products")
+@Table(name = "suppliers")
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
 @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
-public class Product {
+@BatchSize(size=20)
+public class Supplier {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String brand;
-
-    @ManyToOne
-    @JoinColumn(name = "supplier_id")
-    private Supplier supplier;
-
-    @ManyToOne
-    @JoinColumn(name = "type_id")
-    private Type type;
-
-    private String unit;
-
-    private Double price;
-
-    private Integer inStock;
+    private String name;
+    private String position;
+    private String address;
+    private String phone;
+    private String email;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Product product = (Product) o;
-        return id != null && Objects.equals(id, product.id);
+        Supplier supplier = (Supplier) o;
+        return id != null && Objects.equals(id, supplier.id);
     }
 
     @Override

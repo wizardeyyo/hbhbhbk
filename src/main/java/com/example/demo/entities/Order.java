@@ -1,8 +1,10 @@
-package com.example.demo.Entities;
+package com.example.demo.entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -14,7 +16,9 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @ToString
+@Builder
 @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
+@BatchSize(size=20)
 public class Order {
 
     @Id
@@ -23,14 +27,18 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "employee_id")
+    @BatchSize(size=20)
     private Employee employee;
 
     @ManyToOne
     @JoinColumn(name = "client_id")
+    @BatchSize(size=20)
     private Client client;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate shippingDate;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate paymentDate;
 
     private String receiverName;

@@ -1,50 +1,55 @@
-package com.example.demo.Entities;
+package com.example.demo.entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-@Table(name = "ordered")
+@Table(name = "employees")
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
+@Builder
 @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
-public class Ordered {
+@BatchSize(size=20)
+public class Employee {
 
-    @EmbeddedId
-    private OrderProductId orderProductId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @ManyToOne
-    @MapsId("id")
-    @JoinColumn(name = "order_id")
-    private Order order;
+    private String surname;
 
-    @ManyToOne
-    @MapsId("id")
-    @JoinColumn(name = "product_id")
-    private Product product;
+    private String name;
 
-    private Double price;
+    private String position;
 
-    private Integer amount;
+    private LocalDate dateOfBirth;
+
+    private String address;
+
+    private String  phone;
+
+    private String email;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Ordered ordered = (Ordered) o;
-        return orderProductId != null && Objects.equals(orderProductId, ordered.orderProductId);
+        Employee employee = (Employee) o;
+        return id != null && Objects.equals(id, employee.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(orderProductId);
+        return getClass().hashCode();
     }
 }
