@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table class=" table table-hover">
+
+    <h3>Добавить поставщика</h3>
+    <div class="container">
+        <form th:action="@{/main/addOrder}"
+              th:object="${supplier}" method="post">
+            <label>
+                <input th:field="${supplier.id}" placeholder="id" hidden>
+            </label>
+
+            <label>
+                <input th:field="${supplier.brand}" placeholder="brand">
+            </label>
+
+            <label>
+                <input th:field="${supplier.name}" placeholder="name">
+            </label>
+
+            <label>
+                <input th:field="${supplier.position}" placeholder="position">
+            </label>
+
+            <label>
+                <input th:field="${supplier.address}" placeholder="Address">
+            </label>
+
+            <label>
+                <input th:field="${supplier.phone}" placeholder="phone">
+            </label>
+
+            <label>
+                <input th:field="${supplier.email}" placeholder="email">
+            </label>
+
+            <button type="submit">Добавить</button>
+        </form>
+    </div>
+
+
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Брэнд</th>
+        <th>Имя поставщика</th>
+        <th>Должность</th>
+        <th>Адрес</th>
+        <th>Телефон</th>
+        <th>e-mail</th>
+    </tr>
+    </thead>
+    <span>
+        <tbody>
+        <tr th:each="supplier : ${suppliers}">
+            <td th:text="${supplier.id}"></td>
+            <td th:text="${supplier.brand}"></td>
+            <td th:text="${supplier.name}"></td>
+            <td th:text="${supplier.position}"></td>
+            <td th:text="${supplier.address}"></td>
+            <td th:text="${supplier.phone}"></td>
+            <td th:text="${supplier.email}"></td>
+            <td>
+            <a th:href="@{'/main/deletesupplier/' + ${supplier.id}}" th:text="Удалить"></a>
+        </td>
+    </span>
+    </tr>
+    </tbody>
+    </span>
+</table>
+
+<br>
+</body>
+</html>

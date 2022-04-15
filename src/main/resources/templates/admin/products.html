@@ -14,7 +14,9 @@
             <label>
                 <input th:field="${product.id}" placeholder="id" hidden>
             </label>
-
+            <label>
+                <input th:field="${product.name}" placeholder="name">
+            </label>
             <label>
                 <select th:field="${product.supplier}">
                     <option value=""> suppliers </option>
@@ -36,19 +38,13 @@
             </label>
 
             <label>
-                <input type="date" th:field="${product.brand}" placeholder="shippingDate">
+                <input th:field="${product.price}" placeholder="price">
             </label>
-
             <label>
-                <input type="date" th:field="${product.price}" placeholder="paymentDate">
+                <input th:field="${product.unit}" placeholder="unit">
             </label>
-
             <label>
-                <input th:field="${product.inStock}" placeholder="receiverName">
-            </label>
-
-            <label>
-                <input th:field="${product.unit}" placeholder="receiverAddress">
+                <input th:field="${product.inStock}" placeholder="inStock">
             </label>
 
             <button type="submit">Добавить</button>
@@ -59,27 +55,26 @@
     <thead>
     <tr>
         <th>ID</th>
-        <th>Сотрудник</th>
-        <th>Клиент</th>
-        <th>Дата отгрузки</th>
-        <th>Дата платежа</th>
-        <th>Покучатель</th>
-        <th>Адрес получателя</th>
-        <th>Действие</th>
+        <th>Название</th>
+        <th>Поставщик</th>
+        <th>Категория</th>
+        <th>Цена</th>
+        <th>Единица измерения</th>
+        <th>На складе</th>
     </tr>
     </thead>
     <span>
         <tbody>
         <tr th:each="order : ${orders}">
-            <td th:text="${order.id}"></td>
-            <td th:text="${order.employee.surname}"></td>
-            <td th:text="${order.client.clientName}"></td>
-            <td th:text="${order.shippingDate}"></td>
-            <td th:text="${order.paymentDate}"></td>
-            <td th:text="${order.receiverName}"></td>
-            <td th:text="${order.receiverAddress}"></td>
+            <td th:text="${product.id}"></td>
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.supplier.brand}"></td>
+            <td th:text="${product.type.category}"></td>
+            <td th:text="${product.price}"></td>
+            <td th:text="${product.unit}"></td>
+            <td th:text="${product.inStock}"></td>
             <td>
-            <a th:href="@{'/main/deleteOrder/' + ${order.id}}" th:text="Удалить"></a>
+            <a th:href="@{'/main/deleteproduct/' + ${product.id}}" th:text="Удалить"></a>
         </td>
     </span>
     </tr>
