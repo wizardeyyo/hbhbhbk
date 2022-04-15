@@ -21,6 +21,7 @@ public class ClientService {
         return clientRepository.findAll();
     }
 
-    public void removeById(Long id) {
+    public void deleteById(Long id) {
+        clientRepository.deleteById(id);
     }
 }

@@ -1,7 +1,9 @@
 package com.example.demo.services;
 
 import com.example.demo.entities.Order;
+import com.example.demo.entities.Ordered;
 import com.example.demo.repositories.OrderRepository;
+import com.example.demo.repositories.OrderedRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,17 +13,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderedService {
 
-    private final OrderRepository orderedRepository;
+    private final OrderedRepository orderedRepository;
 
-    public List<Order> findAll() {
+    public List<Ordered> findAll() {
         return orderedRepository.findAll();
     }
 
-    public void save(Order order){
-        orderedRepository.save(order);
+    public void save(Ordered ordered){
+        orderedRepository.save(ordered);
     }
 
-    public void removeById(Long id) {
+    public void deleteById(Long id) {
         orderedRepository.deleteById(id);
     }
 }

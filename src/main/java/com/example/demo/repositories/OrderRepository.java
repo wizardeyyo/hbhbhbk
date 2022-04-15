@@ -12,8 +12,4 @@ import java.util.UUID;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
-    @Transactional
-    @Modifying
-    @Query("delete from Order o where o.id = ?1")
-    void deleteById(Long id);
 }

@@ -36,7 +36,7 @@ public class MainController {
 
     @PostMapping("/addOrder")
     public String addGroup(@ModelAttribute("order") Order order) {
-        orderedService.save(order);
+        orderService.save(order);
         return "redirect:/main/allOrders";
     }
 
@@ -73,21 +73,15 @@ public class MainController {
 //                .build();
 //        System.out.println(order);
 
-        model.addAttribute("orders", orderedService.findAll());
+        model.addAttribute("orders", orderService.findAll());
         model.addAttribute("clients", clients);
         model.addAttribute("employees", employees);
         return "admin/orders";
     }
 
-    @GetMapping("/deleteOrder/{id}")
-    public String deleteOrder(@PathVariable("id") Long id) {
-        orderedService.removeById(id);
-        return "redirect:/main/allOrders";
-    }
-
     @PostMapping("/addClient")
-    public String addGroup(@ModelAttribute("client") Client client) {
-        orderService.save(client);
+    public String addClient(@ModelAttribute("client") Client client) {
+        clientService.save(client);
         return "redirect:/main/allClients";
     }
 
@@ -127,8 +121,44 @@ public class MainController {
 
     @GetMapping("/deleteClients/{id}")
     public String deleteClient(@PathVariable("id") Long id) {
-        clientService.removeById(id);
+        clientService.deleteById(id);
         return "redirect:/main/allClients";
+    }
+
+    @GetMapping("/deleteEmployee/{id}")
+    public String deleteEmployee(@PathVariable("id") Long id) {
+        employeeService.deleteById(id);
+        return "redirect:/main/allEmployees";
+    }
+
+    @GetMapping("/deleteOrder/{id}")
+    public String deleteOrder(@PathVariable("id") Long id) {
+        orderService.deleteById(id);
+        return "redirect:/main/allOrders";
+    }
+
+    @GetMapping("/deleteOrdered/{id}")
+    public String deleteOrdered(@PathVariable("id") Long id) {
+        orderedService.deleteById(id);
+        return "redirect:/main/allOrdereds";
+    }
+
+    @GetMapping("/deleteProduct/{id}")
+    public String deleteProduct(@PathVariable("id") Long id) {
+        productService.deleteById(id);
+        return "redirect:/main/allProducts";
+    }
+
+    @GetMapping("/deleteSupplier/{id}")
+    public String deleteSupplier(@PathVariable("id") Long id) {
+        supplierService.deleteById(id);
+        return "redirect:/main/allSuppliers";
+    }
+
+    @GetMapping("/deleteType/{id}")
+    public String deleteType(@PathVariable("id") Long id) {
+        typeService.deleteById(id);
+        return "redirect:/main/allTypes";
     }
 }
 
