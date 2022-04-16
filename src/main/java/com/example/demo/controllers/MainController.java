@@ -112,8 +112,6 @@ public class MainController {
     public String allClients(Model model) {
         Client client = new Client();
 
-        model.addAttribute("client", clientService.findAll());
-
         Client client1 = Client
                 .builder()
                 .brand("Brand")
@@ -128,6 +126,9 @@ public class MainController {
                 .notes("notes")
                 .build();
         System.out.println(client1);
+
+        model.addAttribute("client", client);
+        model.addAttribute("clients", clientService.findAll());
 
         return "admin/clients";
     }
