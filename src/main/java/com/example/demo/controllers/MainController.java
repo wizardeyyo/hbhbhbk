@@ -112,32 +112,22 @@ public class MainController {
     public String allClients(Model model) {
         Client client = new Client();
 
-        model.addAttribute("client", client);
+        model.addAttribute("client", clientService.findAll());
 
-//        Employee employee = Employee
-//                .builder()
-//                .surname("clienName")
-//                .build();
-//
-//        employeeService.save(employee);
-//
-//        Client client = Client
-//                .builder()
-//                .clientName("clientName")
-//                .build();
-//
-//        clientService.save(client);
-//
-//        Order order = Order
-//                .builder()
-//                .client(client)
-//                .employee(employee)
-//                .paymentDate(LocalDate.now())
-//                .receiverAddress("receiverAddress")
-//                .receiverName("receiverName")
-//                .shippingDate(LocalDate.now())
-//                .build();
-//        System.out.println(order);
+        Client client1 = Client
+                .builder()
+                .brand("Brand")
+                .clientName("ClientName")
+                .position("Position")
+                .address("Address")
+                .phone("phone")
+                .email("email")
+                .numberOfContracts(client.getNumberOfContracts())
+                .workingConditions("Условия работы")
+                .price(client.getPrice())
+                .notes("notes")
+                .build();
+        System.out.println(client1);
 
         return "admin/clients";
     }
