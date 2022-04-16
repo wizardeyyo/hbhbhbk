@@ -147,8 +147,39 @@ public class MainController {
      public String allProducts(Model model){
          Product product = new Product();
          List<Product> products = productService.findAll();
+         List<Supplier> suppliers = supplierService.findAll();
+         List<Type> types = typeService.findAll();
+
          model.addAttribute("product", product);
          model.addAttribute("products", products);
+         model.addAttribute("suppliers", suppliers);
+         model.addAttribute("types", types);
+
+         Supplier supplier = Supplier
+         .builder()
+                 .brand("brand")
+                 .build();
+
+        supplierService.save(supplier);
+
+        Type type = Type
+                .builder()
+                .category("category")
+                .build();
+
+        typeService.save(type);
+
+        Product product1 = Product
+                .builder()
+                .name(product.getName())
+                .supplier(supplier)
+                .type(type)
+                .unit("unit")
+                .price(product.getPrice())
+                .inStock(product.getInStock())
+                .build();
+        System.out.println(product1);
+
         return "admin/products";
      }
 

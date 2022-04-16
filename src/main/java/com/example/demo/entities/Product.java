@@ -16,6 +16,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
+@Builder
 @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
 @BatchSize(size=20)
 public class Product {
@@ -24,7 +25,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String brand;
+    private String name;
 
     @ManyToOne
     @JoinColumn(name = "supplier_id")

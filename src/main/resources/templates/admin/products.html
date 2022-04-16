@@ -31,7 +31,7 @@
                 <select th:field="${product.type}">
                     <option value=""> client </option>
                     <option th:each="type : ${types}"
-                            th:text="${types.category}"
+                            th:text="${type.category}"
                             th:value="${type.getId()}">
                     </option>
                 </select>
