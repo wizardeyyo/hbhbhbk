@@ -72,34 +72,6 @@ public class MainController {
         List<Client> clients = clientService.findAll();
 
         model.addAttribute("order", order);
-
-        Employee employee = Employee
-                .builder()
-                .surname("clientName")
-                .build();
-
-        employeeService.save(employee);
-
-        Client client = Client
-                .builder()
-                .clientName("clientName")
-                .build();
-
-        clientService.save(client);
-
-        Order order2 = Order
-                .builder()
-                .client(client)
-                .employee(employee)
-                .paymentDate(LocalDate.now())
-                .receiverAddress("receiverAddress")
-                .receiverName("receiverName")
-                .shippingDate(LocalDate.now())
-                .build();
-
-        orderService.save(order2);
-
-
         model.addAttribute("orders", orderService.findAll());
         model.addAttribute("clients", clients);
         model.addAttribute("employees", employees);
@@ -111,21 +83,6 @@ public class MainController {
     @GetMapping("/allClients")
     public String allClients(Model model) {
         Client client = new Client();
-
-        Client client1 = Client
-                .builder()
-                .brand("Brand")
-                .clientName("ClientName")
-                .position("Position")
-                .address("Address")
-                .phone("phone")
-                .email("email")
-                .numberOfContracts(client.getNumberOfContracts())
-                .workingConditions("Условия работы")
-                .price(client.getPrice())
-                .notes("notes")
-                .build();
-        System.out.println(client1);
 
         model.addAttribute("client", client);
         model.addAttribute("clients", clientService.findAll());
@@ -145,31 +102,6 @@ public class MainController {
          model.addAttribute("products", products);
          model.addAttribute("suppliers", suppliers);
          model.addAttribute("types", types);
-
-         Supplier supplier = Supplier
-         .builder()
-                 .brand("brand")
-                 .build();
-
-        supplierService.save(supplier);
-
-        Type type = Type
-                .builder()
-                .category("category")
-                .build();
-
-        typeService.save(type);
-
-        Product product1 = Product
-                .builder()
-                .name(product.getName())
-                .supplier(supplier)
-                .type(type)
-                .unit("unit")
-                .price(product.getPrice())
-                .inStock(product.getInStock())
-                .build();
-        System.out.println(product1);
 
         return "admin/products";
      }

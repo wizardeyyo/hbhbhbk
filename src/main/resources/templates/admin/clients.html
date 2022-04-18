@@ -34,7 +34,7 @@
                 <input th:field="${client.position}" placeholder="position">
             </label>
             <label>
-                <input th:field="${client.numberOfContract}" placeholder="number of contract">
+                <input th:field="${client.numberOfContracts}" placeholder="number of contract">
             </label>
             <label>
                 <input th:field="${client.price}" placeholder="price">
@@ -43,7 +43,7 @@
                 <input th:field="${client.workingConditions}" placeholder="working conditions">
             </label>
             <label>
-                <input th:field="${client.notes}" placeholder="otes">
+                <input th:field="${client.notes}" placeholder="notes">
             </label>
             <button type="submit">Добавить</button>
         </form>
@@ -67,7 +67,7 @@
     </thead>
     <span>
         <tbody>
-        <tr th:each="client : ${client}">
+        <tr th:each="client : ${clients}">
             <td th:text="${client.id}"></td>
             <td th:text="${client.brand}"></td>
             <td th:text="${client.address}"></td>
