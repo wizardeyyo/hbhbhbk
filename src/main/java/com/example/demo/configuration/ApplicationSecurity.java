@@ -42,7 +42,10 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers("/main/**").hasRole("ADMIN")
                 .and()
                 // some more method calls
-                .formLogin();
+                .formLogin()
+                .defaultSuccessUrl("/main/", true);
+
+
     }
 
     @Bean
