@@ -3,11 +3,14 @@ package com.example.demo.controllers;
 import com.example.demo.entities.*;
 import com.example.demo.services.*;
 import lombok.RequiredArgsConstructor;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static org.aspectj.apache.bcel.Constants.types;
 
 
 @Controller
@@ -175,6 +178,61 @@ public class MainController {
     public String editSupplier(@ModelAttribute("supplier") Supplier supplier) {
         supplierService.save(supplier);
         return "redirect:/main/allSuppliers";
+    }
+    @GetMapping("/editClient/{id}")
+    public String editClientById(Model model, @PathVariable("id") Long id) {
+        Client client = clientService.findById(id);
+        model.addAttribute("client", client);
+        return "admin/editClient";
+    }
+
+    @PostMapping("/editClient")
+    public String editClient(@ModelAttribute("client") Client client){
+        clientService.save(client);
+        return "redirect:/main/allClients";
+    }
+    @GetMapping("/editEmployee/{id}")
+    public String editEmployeeById(Model model, @PathVariable("id") Long id) {
+        Employee employee = employeeService.findById(id);
+        model.addAttribute("employee", employee);
+        return "admin/editEmployee";
+    }
+    @PostMapping("editEmployee")
+    public String editEmployee(@ModelAttribute("employee") Employee employee){
+        employeeService.save(employee);
+        return "redirect:/main/allEmployees";
+    }
+    @GetMapping("/editProduct/{id}")
+    public String editProductById(Model model, @PathVariable("id") Long id) {
+        Product product = productService.findById(id);
+        List<Supplier> suppliers = supplierService.findAll();
+        List<Type> types = typeService.findAll();
+
+        model.addAttribute("product", product);
+        model.addAttribute("suppliers", suppliers);
+        model.addAttribute("types", types);
+        return "admin/editProduct";
+    }
+    @PostMapping("editProduct")
+    public String editProduct(@ModelAttribute("product") Product product){
+        productService.save(product);
+        return "redirect:/main/allProducts";
+    }
+    @GetMapping("/editOrder/{id}")
+    public String editOrderById(Model model, @PathVariable("id")Long id){
+        Order order = orderService.findById(id);
+        List<Employee> employees = employeeService.findAll();
+        List<Client> clients = clientService.findAll();
+
+        model.addAttribute("order", order);
+        model.addAttribute("clients", clients);
+        model.addAttribute("employees", employees);
+        return "admin/editOrder";
+    }
+    @PostMapping("editOrder")
+    public String editOrder(@ModelAttribute("order")Order order){
+        orderService.save(order);
+        return "redirect:/main/allOrders";
     }
 }
 

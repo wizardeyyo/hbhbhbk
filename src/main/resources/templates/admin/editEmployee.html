@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование поставщика</title>
+</head>
+<body>
+<div class="container">
+    <form th:action="@{/main/editEmployee}"
+          th:object="${employee}" method="post">
+            <input th:field="${employee.id}" placeholder="id" hidden>
+            <input th:field="${employee.surname}" placeholder="surname">
+            <input th:field="${employee.name}" placeholder="name">
+            <input th:field="${employee.position}" placeholder="position">
+            <input th:field="${employee.address}" placeholder="address">
+            <input type="date" th:field="${employee.dateOfBirth}" placeholder="dateOfBirth">
+            <input th:field="${employee.email}" placeholder="email">
+            <input th:field="${employee.phone}" placeholder="phone">
+        <button type="submit">Готово</button>
+    </form>
+</div>
+</body>
+</html>

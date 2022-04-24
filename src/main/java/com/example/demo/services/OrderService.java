@@ -3,6 +3,7 @@ package com.example.demo.services;
 import com.example.demo.entities.Order;
 import com.example.demo.repositories.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +21,8 @@ public class OrderService {
     public List<Order> findAll(){
         return orderRepository.findAll();
     }
+
+    public Order findById(Long id) {return orderRepository.getById(id);}
 
     public void deleteById(Long id){
         orderRepository.deleteById(id);

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование поставщика</title>
+</head>
+<body>
+<div class="container">
+    <form th:action="@{/main/editClient}"
+          th:object="${client}" method="post">
+            <input th:field="${client.id}" placeholder="id" hidden>
+            <input th:field="${client.brand}" placeholder="brand">
+            <input th:field="${client.address}" placeholder="address">
+            <input th:field="${client.clientName}" placeholder="client name">
+            <input th:field="${client.email}" placeholder="e-mail">
+            <input th:field="${client.phone}" placeholder="phone">
+            <input th:field="${client.position}" placeholder="position">
+            <input th:field="${client.numberOfContracts}" placeholder="number of contract">
+            <input th:field="${client.price}" placeholder="price">
+            <input th:field="${client.workingConditions}" placeholder="working conditions">
+            <input th:field="${client.notes}" placeholder="notes">
+        <button type="submit">Готово</button>
+    </form>
+</div>
+</body>
+</html>

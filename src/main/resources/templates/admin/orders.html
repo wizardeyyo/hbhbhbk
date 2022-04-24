@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Заказы</title>
@@ -92,6 +92,9 @@
             <td th:text="${order.receiverAddress}"></td>
             <td>
             <a th:href="@{'/main/deleteOrder/' + ${order.id}}" th:text="Удалить"></a>
+                <div sec:authorize="hasRole('ADMIN')">
+        <a th:href="@{'/main/editOrder/' + ${order.id}}" th:text="Изменить"></a>
+    </div>
         </td>
     </span>
     </tr>

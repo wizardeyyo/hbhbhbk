@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Сотрудники</title>
@@ -85,6 +85,9 @@
             <td th:text="${employee.phone}"></td>
             <td>
             <a th:href="@{'/main/deleteEmployee/' + ${employee.id}}" th:text="Удалить"></a>
+                <div sec:authorize="hasRole('ADMIN')">
+        <a th:href="@{'/main/editEmployee/' + ${employee.id}}" th:text="Изменить"></a>
+    </div>
         </td>
     </span>
     </tr>

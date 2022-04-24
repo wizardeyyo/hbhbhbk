@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование поставщика</title>
+</head>
+<body>
+<div class="container">
+    <form th:action="@{/main/editOrder}"
+          th:object="${order}" method="post">
+
+            <input th:field="${order.id}" placeholder="id" hidden>
+            <select th:field="${order.employee}">
+                <option value=""> employee </option>
+                <option th:each="employee : ${employees}"
+                        th:text="${employee.surname}"
+                        th:value="${employee.getId()}">
+                </option>
+            </select>
+            <select th:field="${order.client}">
+                <option value=""> client </option>
+                <option th:each="client : ${clients}"
+                        th:text="${client.clientName}"
+                        th:value="${client.getId()}">
+                </option>
+            </select>
+            <input type="date" th:field="${order.shippingDate}" placeholder="shippingDate">
+
+            <input type="date" th:field="${order.paymentDate}" placeholder="paymentDate">
+            <input th:field="${order.receiverName}" placeholder="receiverName">
+            <input th:field="${order.receiverAddress}" placeholder="receiverAddress">
+        <button type="submit">Готово</button>
+    </form>
+</div>
+</body>
+</html>

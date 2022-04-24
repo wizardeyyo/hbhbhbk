@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Товары</title>
@@ -87,6 +87,9 @@
             <td th:text="${product.inStock}"></td>
             <td>
             <a th:href="@{'/main/deleteProduct/' + ${product.id}}" th:text="Удалить"></a>
+                <div sec:authorize="hasRole('ADMIN')">
+        <a th:href="@{'/main/editProduct/' + ${product.id}}" th:text="Изменить"></a>
+    </div>
         </td>
     </span>
     </tr>
