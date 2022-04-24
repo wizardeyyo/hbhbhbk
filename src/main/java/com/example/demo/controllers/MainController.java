@@ -166,12 +166,10 @@ public class MainController {
     }
 
     @GetMapping("/editSupplier/{id}")
-    public String editSupplier(Model model, @PathVariable("id") Long id) {
+    public String editSupplierById(Model model, @PathVariable("id") Long id) {
         Supplier supplier = supplierService.findById(id);
-        List<Supplier> suppliers = supplierService.findAll();
         model.addAttribute("supplier", supplier);
-        model.addAttribute("suppliers", suppliers);
-        return "admin/suppliers";
+        return "admin/editSupplier";
     }
 
     @PostMapping("/editSupplier")

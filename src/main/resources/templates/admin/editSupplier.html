@@ -8,15 +8,13 @@
 <div class="container">
     <form th:action="@{/main/editSupplier}"
           th:object="${supplier}" method="post">
-            <input th:field="${supplier.id}" placeholder="id" hidden>
-            <input th:field="${supplier.brand}" placeholder="brand">
-            <input th:field="${supplier.name}" placeholder="name">
-            <input th:field="${supplier.position}" placeholder="position">
-            <input th:field="${supplier.address}" placeholder="Address">
-            <input th:field="${supplier.phone}" placeholder="phone">
-            <input th:field="${supplier.email}" placeholder="email">
-    </form>
-</div>
+        <input th:field="${supplier.id}" placeholder="id" hidden>
+        <input th:field="${supplier.brand}" placeholder="brand">
+        <input th:field="${supplier.name}" placeholder="name">
+        <input th:field="${supplier.position}" placeholder="position">
+        <input th:field="${supplier.address}" placeholder="Address">
+        <input th:field="${supplier.phone}" placeholder="phone">
+        <input th:field="${supplier.email}" placeholder="email">
         <button type="submit">Готово</button>
     </form>
 </div>
