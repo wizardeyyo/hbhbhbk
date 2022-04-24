@@ -5,13 +5,15 @@
     <title>Поставщики</title>
 </head>
 <body>
-<div>Складской учет</div>
-<a th:href="@{'/main/allOrders/'}">Заказы</a>
-<a th:href="@{'/main/allProducts/'}">Товары</a>
-<a th:href="@{'/main/allSuppliers/'}">Поставщики</a>
-<a th:href="@{'/main/allClients/'}">Клиенты</a>
-<a th:href="@{'/main/allEmployees/'}">Сотрудники</a>
-<a th:href="@{'/logout'}">Выход</a></td>
+<div>Поставщики</div>
+<div style="display: flex; flex-direction: row; gap: 16px;" >
+    <a th:href="@{'/main/allOrders/'}">Заказы</a>
+    <a th:href="@{'/main/allProducts/'}">Товары</a>
+    <a th:href="@{'/main/allSuppliers/'}">Поставщики</a>
+    <a th:href="@{'/main/allClients/'}">Клиенты</a>
+    <a th:href="@{'/main/allEmployees/'}">Сотрудники</a>
+    <a style="flex-grow: 1; text-align: right; margin-right: 3%" th:href="@{'/logout'}">Выход</a>
+</div>
 </form>
 </body>
 <body>
@@ -77,6 +79,7 @@
             <td th:text="${supplier.email}"></td>
             <td>
             <a th:href="@{'/main/deleteSupplier/' + ${supplier.id}}" th:text="Удалить"></a>
+            <a th:href="@{'main/editSupplier/' + ${supplier.id}}" th:text="Изменить"></a>
         </td>
     </span>
     </tr>

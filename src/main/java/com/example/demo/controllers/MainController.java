@@ -63,8 +63,6 @@ public class MainController {
     }
 
 
-
-
     @GetMapping("/allOrders")
     public String allOrders(Model model) {
         Order order = new Order();
@@ -79,7 +77,6 @@ public class MainController {
     }
 
 
-
     @GetMapping("/allClients")
     public String allClients(Model model) {
         Client client = new Client();
@@ -91,38 +88,38 @@ public class MainController {
     }
 
 
-     @GetMapping("/allProducts")
-     public String allProducts(Model model){
-         Product product = new Product();
-         List<Product> products = productService.findAll();
-         List<Supplier> suppliers = supplierService.findAll();
-         List<Type> types = typeService.findAll();
+    @GetMapping("/allProducts")
+    public String allProducts(Model model) {
+        Product product = new Product();
+        List<Product> products = productService.findAll();
+        List<Supplier> suppliers = supplierService.findAll();
+        List<Type> types = typeService.findAll();
 
-         model.addAttribute("product", product);
-         model.addAttribute("products", products);
-         model.addAttribute("suppliers", suppliers);
-         model.addAttribute("types", types);
+        model.addAttribute("product", product);
+        model.addAttribute("products", products);
+        model.addAttribute("suppliers", suppliers);
+        model.addAttribute("types", types);
 
         return "admin/products";
-     }
+    }
 
-     @GetMapping("/allSuppliers")
-     public String allSuppliers(Model model){
-         Supplier supplier = new Supplier();
-         List<Supplier> suppliers = supplierService.findAll();
-         model.addAttribute("supplier", supplier);
-         model.addAttribute("suppliers", suppliers);
-         return "admin/suppliers";
-     }
-     @GetMapping("/allEmployees")
-     public String allEmployees(Model model){
+    @GetMapping("/allSuppliers")
+    public String allSuppliers(Model model) {
+        Supplier supplier = new Supplier();
+        List<Supplier> suppliers = supplierService.findAll();
+        model.addAttribute("supplier", supplier);
+        model.addAttribute("suppliers", suppliers);
+        return "admin/suppliers";
+    }
+
+    @GetMapping("/allEmployees")
+    public String allEmployees(Model model) {
         Employee employee = new Employee();
         List<Employee> employees = employeeService.findAll();
         model.addAttribute("employee", employee);
         model.addAttribute("employees", employees);
-         return "admin/employees";
-     }
-
+        return "admin/employees";
+    }
 
 
     // удалялки
@@ -167,7 +164,28 @@ public class MainController {
         typeService.deleteById(id);
         return "redirect:/main/allTypes";
     }
+
+    @GetMapping("/editSupplier/{UUID}")
+    public String editSupplier(Model model, @PathVariable("UUID") UUID uuid) {
+        Supplier supplier = supplierService.findById(uuid);
+        List<Supplier> suppliers = supplierService.findAll();
+        model.addAttribute("supplier", supplier);
+        model.addAttribute("suppliers", suppliers);
+        return "admin/suppliers";
+    }
+
+    @PostMapping("/editSupplier")
+    public String editSupplier(@ModelAttribute("supplier") Supplier supplier) {
+        supplierService.save(supplier);
+        return "redirect:/main/allSuppliers";
+    }
 }
+
+
+
+
+
+
 
 
 
