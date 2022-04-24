@@ -1,8 +1,6 @@
 package com.example.demo.services;
 
-import com.example.demo.entities.Order;
 import com.example.demo.entities.Ordered;
-import com.example.demo.repositories.OrderRepository;
 import com.example.demo.repositories.OrderedRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
