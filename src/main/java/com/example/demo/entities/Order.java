@@ -35,6 +35,11 @@ public class Order {
     @BatchSize(size=20)
     private Client client;
 
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    @BatchSize(size=20)
+    private Product product;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate shippingDate;
 
