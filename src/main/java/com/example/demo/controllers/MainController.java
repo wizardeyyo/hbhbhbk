@@ -20,7 +20,6 @@ public class MainController {
 
     private final ClientService clientService;
     private final EmployeeService employeeService;
-    private final OrderedService orderedService;
     private final OrderService orderService;
     private final ProductService productService;
     private final SupplierService supplierService;
@@ -139,12 +138,6 @@ public class MainController {
     public String deleteOrder(@PathVariable("id") Long id) {
         orderService.deleteById(id);
         return "redirect:/main/allOrders";
-    }
-
-    @GetMapping("/deleteOrdered/{id}")
-    public String deleteOrdered(@PathVariable("id") Long id) {
-        orderedService.deleteById(id);
-        return "redirect:/main/allOrdereds";
     }
 
     @GetMapping("/deleteProduct/{id}")

@@ -48,6 +48,17 @@
             </label>
 
             <label>
+                <select th:field="${order.client}">
+                    <option value=""> client </option>
+                    <option th:each="client : ${clients}"
+                            th:text="${client.clientName}"
+                            th:value="${client.getId()}">
+                    </option>
+                </select>
+            </label>
+
+
+            <label>
                 <input type="date" th:field="${order.shippingDate}" placeholder="shippingDate">
             </label>
 
@@ -62,7 +73,6 @@
             <label>
                 <input th:field="${order.receiverAddress}" placeholder="receiverAddress">
             </label>
-
             <button type="submit">Добавить</button>
         </form>
     </div>

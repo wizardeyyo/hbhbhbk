@@ -9,16 +9,16 @@
     <form th:action="@{/main/editClient}"
           th:object="${client}" method="post">
             <input th:field="${client.id}" placeholder="id" hidden>
-            <input th:field="${client.brand}" placeholder="brand">
-            <input th:field="${client.address}" placeholder="address">
-            <input th:field="${client.clientName}" placeholder="client name">
-            <input th:field="${client.email}" placeholder="e-mail">
-            <input th:field="${client.phone}" placeholder="phone">
-            <input th:field="${client.position}" placeholder="position">
-            <input th:field="${client.numberOfContracts}" placeholder="number of contract">
-            <input th:field="${client.price}" placeholder="price">
-            <input th:field="${client.workingConditions}" placeholder="working conditions">
-            <input th:field="${client.notes}" placeholder="notes">
+        <p>Брэнд <input th:field="${client.brand}" placeholder="brand"></p>
+        <p>Адрес <input th:field="${client.address}" placeholder="address"></p>
+        <p>Имя клиента <input th:field="${client.clientName}" placeholder="client name"></p>
+        <p>e-mail <input th:field="${client.email}" placeholder="e-mail"></p>
+        <p>Номер телефона <input th:field="${client.phone}" placeholder="phone"></p>
+        <p>Должность <input th:field="${client.position}" placeholder="position"><p>
+        <p>Номер контракта <input th:field="${client.numberOfContracts}" placeholder="number of contract"></p>
+        <p>Цена <input th:field="${client.price}" placeholder="price"></p>
+        <p>Условия работы <input th:field="${client.workingConditions}" placeholder="working conditions"></p>
+        <p>Заметка <input th:field="${client.notes}" placeholder="notes"></p>
         <button type="submit">Готово</button>
     </form>
 </div>
