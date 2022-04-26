@@ -11,7 +11,6 @@
 
             <input th:field="${order.id}" placeholder="id" hidden>
             <div>Сотрудник <select th:field="${order.employee}">
-                <option value=""> employee </option>
                 <option th:each="employee : ${employees}"
                         th:text="${employee.surname}"
                         th:value="${employee.getId()}">
@@ -19,17 +18,28 @@
             </select></div>
           <p></p>
           <div>Клиент <select th:field="${order.client}">
-                <option value=""> client </option>
                 <option th:each="client : ${clients}"
                         th:text="${client.clientName}"
                         th:value="${client.getId()}">
                 </option>
-            </select></div>
+            </select>
+          </div>
+
+            <p></p>
+            <div>Товар <select th:field="${order.product}">
+                <option th:each="product : ${products}"
+                        th:text="${product.name}"
+                        th:value="${product.getId()}">
+                </option>
+            </select>
+            </div>
+            <p>Количество<input th:field="${order.amount}" placeholder="amount" required></p>
             <p>Дата отправки <input type="date" th:field="${order.shippingDate}" placeholder="shippingDate"></p>
         <p>Дата оплаты <input type="date" th:field="${order.paymentDate}" placeholder="paymentDate"></p>
         <p>Имя получателя <input th:field="${order.receiverName}" placeholder="receiverName"></p>
-        <p>Адрес Получателя <input th:field="${order.receiverAddress}" placeholder="receiverAddress"></p>
+        <p>Адрес получателя <input th:field="${order.receiverAddress}" placeholder="receiverAddress"></p>
         <button type="submit">Готово</button>
+        <a th:href="@{'/main/allOrders/'}"><button>Назад</button></a>
     </form>
 </div>
 </body>

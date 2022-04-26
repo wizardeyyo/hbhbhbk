@@ -49,4 +49,6 @@ public class Order {
     private String receiverName;
 
     private String receiverAddress;
+
+    private Integer amount;
 }

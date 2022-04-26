@@ -30,4 +30,4 @@ INSERT INTO users (username, password, first_name, last_name, email, phone) VALU
 INSERT INTO users (username, password, first_name, last_name, email, phone) VALUES (
 'user','$2a$10$i0OAZ6RAUOfXKBLrNPH5P.6GoqTPrV1x7Q8yvhl0Mitvc00R1hmxy' ,'user', 'hyuseer', 'hyemail@mail.ru', '1234567890');
 
-INSERT INTO user_roles (user_id, role_id) VALUES (1, 1), (1, 2), (2, 2);
+INSERT INTO user_roles (user_id, role_id) VALUES (1, 1), (1, 2), (2, 1);

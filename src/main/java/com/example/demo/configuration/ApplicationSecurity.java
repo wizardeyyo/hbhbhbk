@@ -39,7 +39,9 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 //                .logout().permitAll();
         http.authorizeRequests()
 //                .antMatchers("/", "/home").hasRole("ROLE_USER")
-                .antMatchers("/main/**").hasRole("ADMIN")
+//                .antMatchers("*/edit*/*").hasRole("ADMIN")
+                .antMatchers("/main*/*").hasRole("ADMIN")
+                .antMatchers("/main/*").hasRole("USER")
                 .and()
                 // some more method calls
                 .formLogin()

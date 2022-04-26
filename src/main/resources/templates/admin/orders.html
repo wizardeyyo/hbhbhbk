@@ -11,7 +11,9 @@
     <a th:href="@{'/main/allProducts/'}">Товары</a>
     <a th:href="@{'/main/allSuppliers/'}">Поставщики</a>
     <a th:href="@{'/main/allClients/'}">Клиенты</a>
+    <div sec:authorize="hasRole('ADMIN')">
     <a th:href="@{'/main/allEmployees/'}">Сотрудники</a>
+    </div>
     <a style="flex-grow: 1; text-align: right; margin-right: 3%" th:href="@{'/logout'}">Выход</a>
 </div>
 </form>
@@ -29,7 +31,6 @@
 
             <label>
                 <select th:field="${order.employee}">
-                    <option value=""> employee </option>
                     <option th:each="employee : ${employees}"
                             th:text="${employee.surname}"
                             th:value="${employee.getId()}">
@@ -39,7 +40,6 @@
 
             <label>
                 <select th:field="${order.client}">
-                    <option value=""> client </option>
                     <option th:each="client : ${clients}"
                             th:text="${client.clientName}"
                             th:value="${client.getId()}">
@@ -48,15 +48,17 @@
             </label>
 
             <label>
-                <select th:field="${order.client}">
-                    <option value=""> client </option>
-                    <option th:each="client : ${clients}"
-                            th:text="${client.clientName}"
-                            th:value="${client.getId()}">
+                <select th:field="${order.product}">
+                    <option th:each="product : ${products}"
+                            th:text="${product.name}"
+                            th:value="${product.getId()}">
                     </option>
                 </select>
             </label>
 
+            <label>
+                <input th:field="${order.amount}" placeholder="amount" required>
+            </label>
 
             <label>
                 <input type="date" th:field="${order.shippingDate}" placeholder="shippingDate">
@@ -83,6 +85,9 @@
         <th>ID</th>
         <th>Сотрудник</th>
         <th>Клиент</th>
+        <th>Товар</th>
+        <th>Количество</th>
+        <th>Цена</th>
         <th>Дата отгрузки</th>
         <th>Дата платежа</th>
         <th>Покучатель</th>
@@ -96,6 +101,9 @@
             <td th:text="${order.id}"></td>
             <td th:text="${order.employee.surname}"></td>
             <td th:text="${order.client.clientName}"></td>
+            <td th:text="${order.product.name}"></td>
+            <td th:text="${order.amount}"></td>
+            <td th:text="${order.product.price}*${order.amount}"></td>
             <td th:text="${order.shippingDate}"></td>
             <td th:text="${order.paymentDate}"></td>
             <td th:text="${order.receiverName}"></td>

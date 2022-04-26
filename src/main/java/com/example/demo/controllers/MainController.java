@@ -67,11 +67,13 @@ public class MainController {
         Order order = new Order();
         List<Employee> employees = employeeService.findAll();
         List<Client> clients = clientService.findAll();
+        List<Product> products = productService.findAll();
 
         model.addAttribute("order", order);
         model.addAttribute("orders", orderService.findAll());
         model.addAttribute("clients", clients);
         model.addAttribute("employees", employees);
+        model.addAttribute("products", products);
         return "admin/orders";
     }
 
@@ -93,11 +95,13 @@ public class MainController {
         List<Product> products = productService.findAll();
         List<Supplier> suppliers = supplierService.findAll();
         List<Type> types = typeService.findAll();
+        List<Order> orders = orderService.findAll();
 
         model.addAttribute("product", product);
         model.addAttribute("products", products);
         model.addAttribute("suppliers", suppliers);
         model.addAttribute("types", types);
+        model.addAttribute("orders", orders);
 
         return "admin/products";
     }
@@ -117,6 +121,7 @@ public class MainController {
         List<Employee> employees = employeeService.findAll();
         model.addAttribute("employee", employee);
         model.addAttribute("employees", employees);
+       // model.addAttribute("employees", true);
         return "admin/employees";
     }
 
@@ -214,10 +219,12 @@ public class MainController {
         Order order = orderService.findById(id);
         List<Employee> employees = employeeService.findAll();
         List<Client> clients = clientService.findAll();
+        List<Product> products = productService.findAll();
 
         model.addAttribute("order", order);
         model.addAttribute("clients", clients);
         model.addAttribute("employees", employees);
+        model.addAttribute("products",  products);
         return "admin/editOrder";
     }
     @PostMapping("editOrder")

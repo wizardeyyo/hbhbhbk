@@ -20,6 +20,7 @@
         <p>Условия работы <input th:field="${client.workingConditions}" placeholder="working conditions"></p>
         <p>Заметка <input th:field="${client.notes}" placeholder="notes"></p>
         <button type="submit">Готово</button>
+        <a th:href="@{'/main/allClients/'}"><button>Назад</button></a>
     </form>
 </div>
 </body>

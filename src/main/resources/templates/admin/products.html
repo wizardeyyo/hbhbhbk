@@ -11,7 +11,9 @@
     <a th:href="@{'/main/allProducts/'}">Товары</a>
     <a th:href="@{'/main/allSuppliers/'}">Поставщики</a>
     <a th:href="@{'/main/allClients/'}">Клиенты</a>
+    <div sec:authorize="hasRole('ADMIN')">
     <a th:href="@{'/main/allEmployees/'}">Сотрудники</a>
+    </div>
     <a style="flex-grow: 1; text-align: right; margin-right: 3%" th:href="@{'/logout'}">Выход</a>
 </div>
 </form>
@@ -31,7 +33,6 @@
             </label>
             <label>
                 <select th:field="${product.supplier}">
-                    <option value=""> suppliers </option>
                     <option th:each="supplier : ${suppliers}"
                             th:text="${supplier.brand}"
                             th:value="${supplier.getId()}">
@@ -41,7 +42,6 @@
 
             <label>
                 <select th:field="${product.type}">
-                    <option value=""> client </option>
                     <option th:each="type : ${types}"
                             th:text="${type.category}"
                             th:value="${type.getId()}">

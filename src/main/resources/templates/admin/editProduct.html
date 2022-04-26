@@ -11,7 +11,6 @@
             <input th:field="${product.id}" placeholder="id" hidden>
             <p>Название <input th:field="${product.name}" placeholder="name"></p>
             <div>Поставщик <select th:field="${product.supplier}">
-                <option value=""> suppliers </option>
                 <option th:each="supplier : ${suppliers}"
                         th:text="${supplier.brand}"
                         th:value="${supplier.getId()}">
@@ -20,7 +19,6 @@
             </div>
         <p></p>
         <div>Категория <select th:field="${product.type}">
-                <option value=""> client </option>
                 <option th:each="type : ${types}"
                         th:text="${type.category}"
                         th:value="${type.getId()}">
@@ -31,6 +29,7 @@
         <p>Единица измерения <input th:field="${product.unit}" placeholder="unit"></p>
         <p>В наличии <input th:field="${product.inStock}" placeholder="inStock"></p>
         <button type="submit">Готово</button>
+        <a th:href="@{'/main/allProducts/'}"><button>Назад</button></a>
     </form>
 </div>
 </body>

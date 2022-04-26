@@ -17,6 +17,7 @@
         <p>e-mail <input th:field="${employee.email}" placeholder="email"></p>
         <p>Номер телефона <input th:field="${employee.phone}" placeholder="phone"></p>
         <button type="submit">Готово</button>
+        <a th:href="@{'/main/allEmployees/'}"><button>Назад</button></a>
     </form>
 </div>
 </body>
