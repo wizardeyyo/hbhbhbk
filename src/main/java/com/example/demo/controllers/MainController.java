@@ -149,6 +149,9 @@ public class MainController {
         User user = new User();
         List<User> users  = userService.findAll();
         model.addAttribute("user", user);
+        model.addAttribute("roles", List.of(
+                new Role(1L, "ROLE_USER"),
+                new Role(2L, "ROLE_ADMIN")));
         model.addAttribute("users", users);
         return "admin/users";
     }
