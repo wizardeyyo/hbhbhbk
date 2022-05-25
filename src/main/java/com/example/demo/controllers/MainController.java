@@ -4,6 +4,7 @@ import com.example.demo.entities.*;
 import com.example.demo.services.*;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.weaver.ast.Or;
+import org.springframework.scheduling.Trigger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,7 @@ public class MainController {
     private final ProductService productService;
     private final SupplierService supplierService;
     private final TypeService typeService;
+    private final UserServiceImpl userService;
 
     @GetMapping
     public String adminMain() {
@@ -59,6 +61,16 @@ public class MainController {
     public String addSupplier(@ModelAttribute("supplier") Supplier supplier) {
         supplierService.save(supplier);
         return "redirect:/main/allSuppliers";
+    }
+    @PostMapping("/addType")
+    public String addType(@ModelAttribute("type") Type type) {
+        typeService.save(type);
+        return "redirect:/main/allTypes";
+    }
+    @PostMapping("/addUser")
+    public String addUser(@ModelAttribute("user") User user){
+           userService.save(user);
+        return "redirect:/main/AllUsers";
     }
 
 
@@ -97,6 +109,7 @@ public class MainController {
         List<Type> types = typeService.findAll();
         List<Order> orders = orderService.findAll();
 
+
         model.addAttribute("product", product);
         model.addAttribute("products", products);
         model.addAttribute("suppliers", suppliers);
@@ -123,6 +136,23 @@ public class MainController {
         model.addAttribute("employees", employees);
        // model.addAttribute("employees", true);
         return "admin/employees";
+    }
+
+    @GetMapping("/allTypes")
+    public String allTypes(Model model) {
+        Type type = new Type();
+        List<Type> types = typeService.findAll();
+        model.addAttribute("type", type);
+        model.addAttribute("types", types);
+        return "admin/types";
+    }
+    @GetMapping("/allUsers")
+    public String allUsers(Model model) {
+        User user = new User();
+        List<User> users  = userService.findAll();
+        model.addAttribute("user", user);
+        model.addAttribute("users", users);
+        return "admin/users";
     }
 
 
@@ -161,6 +191,11 @@ public class MainController {
     public String deleteType(@PathVariable("id") Long id) {
         typeService.deleteById(id);
         return "redirect:/main/allTypes";
+    }
+    @GetMapping("/deleteUser/{id}")
+    public String deleteUser(@PathVariable("id") Long id){
+        userService.deleteById(id);
+        return "redirect:/main/allUsers";
     }
 
     @GetMapping("/editSupplier/{id}")
@@ -231,6 +266,28 @@ public class MainController {
     public String editOrder(@ModelAttribute("order")Order order){
         orderService.save(order);
         return "redirect:/main/allOrders";
+    }
+    @GetMapping("/editType/{id}")
+    public String editTypeById(Model model, @PathVariable("id") Long id) {
+        Type type = typeService.findById(id);
+        model.addAttribute("type", type);
+        return "admin/editType";
+    }
+    @PostMapping("editType")
+    public  String editType(@ModelAttribute("type")Type type){
+        typeService.save(type);
+        return "redirect:/main/allTypes";
+    }
+    @GetMapping("/editUser/{id}")
+    public String editUserById(Model model, @PathVariable("id")Long id){
+        User user = userService.findById(id);
+        model.addAttribute("user", user);
+        return "redirect:/main/allUsers";
+    }
+    @PostMapping("editUser")
+    public  String editUser(@ModelAttribute("user")User user){
+        userService.save(user);
+        return "redirect:/main/AllUsers";
     }
 }
 

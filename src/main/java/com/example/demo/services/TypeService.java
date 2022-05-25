@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import com.example.demo.entities.Supplier;
 import com.example.demo.entities.Type;
 import com.example.demo.repositories.TypeRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,4 +25,7 @@ public class TypeService {
     public void deleteById(Long id){
         typeRepository.deleteById(id);
     }
+
+    public Type findById(Long id) { return typeRepository.getById(id);}
+
 }

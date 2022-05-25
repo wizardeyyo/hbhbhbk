@@ -12,9 +12,13 @@
     <a th:href="@{'/main/allSuppliers/'}">Поставщики</a>
     <a th:href="@{'/main/allClients/'}">Клиенты</a>
     <div sec:authorize="hasRole('ADMIN')">
+        <a th:href="@{'/main/allTypes/'}">Категории</a>
+    </div>
+    <div sec:authorize="hasRole('ADMIN')">
     <a th:href="@{'/main/allEmployees/'}">Сотрудники</a>
     </div>
-    <a style="flex-grow: 1; text-align: right; margin-right: 3%" th:href="@{'/logout'}">Выход</a>
+    <a style="flex-grow: 1; text-align: right; margin-right: 3%"
+       th:href="@{'/logout'}">Выход</a>
 </div>
 </body>
 </html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Клиенты</title>
+</head>
+<body>
+<div>Клиенты</div>
+<div style="display: flex; flex-direction: row; gap: 16px;" >
+    <a th:href="@{'/main/allOrders/'}">Заказы</a>
+    <a th:href="@{'/main/allProducts/'}">Товары</a>
+    <a th:href="@{'/main/allSuppliers/'}">Поставщики</a>
+    <a th:href="@{'/main/allClients/'}">Клиенты</a>
+    <div sec:authorize="hasRole('ADMIN')">
+        <a th:href="@{'/main/allTypes/'}">Категории</a>
+    </div>
+    <div sec:authorize="hasRole('ADMIN')">
+        <a th:href="@{'/main/allEmployees/'}">Сотрудники</a>
+    </div>
+    <a style="flex-grow: 1; text-align: right; margin-right: 3%" th:href="@{'/logout'}">Выход</a>
+</div>
+</form>
+</body>
+<body>
+<table class=" table table-hover">
+
+    <h3>Добавить тип</h3>
+    <div class="container">
+        <form th:action="@{/main/addType}"
+              th:object="${type}" method="post">
+            <label>
+                <input th:field="${type.id}" placeholder="id" hidden>
+            </label>
+            <label>
+                <input th:field="${type.category}" placeholder="category">
+            </label>
+            <label>
+                <input th:field="${type.description}" placeholder="description">
+            </label>
+            <button type="submit">Добавить</button>
+        </form>
+    </div>
+
+
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Категория</th>
+        <th>Описания</th>
+    </tr>
+    </thead>
+    <span>
+        <tbody>
+        <tr th:each="type : ${types}">
+            <td th:text="${type.id}"></td>
+            <td th:text="${type.category}"></td>
+            <td th:text="${type.description}"></td>
+
+            <td>
+<div>
+    <div>
+        <a th:href="@{'/main/deleteType/' + ${type.id}}" th:text="Удалить"></a>
+    </div>
+    <div sec:authorize="hasRole('ADMIN')">
+        <a th:href="@{'/main/editType/' + ${type.id}}" th:text="Изменить"></a>
+    </div>
+</div>
+
+        </td>
+    </span>
+    </tr>
+    </tbody>
+    </span>
+</table>
+
+<br>
+</body>
+</html>

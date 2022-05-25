@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Сотрудники</title>
+</head>
+<body>
+<div>Сотрудники</div>
+<div style="display: flex; flex-direction: row; gap: 16px;" >
+    <a th:href="@{'/main/allOrders/'}">Заказы</a>
+    <a th:href="@{'/main/allProducts/'}">Товары</a>
+    <a th:href="@{'/main/allSuppliers/'}">Поставщики</a>
+    <a th:href="@{'/main/allClients/'}">Клиенты</a>
+    <div sec:authorize="hasRole('ADMIN')">
+        <a th:href="@{'/main/allUsers/'}">Пользователи</a>
+    </div>
+    <div sec:authorize="hasRole('ADMIN')">
+        <a th:href="@{'/main/allTypes/'}">Категории</a>
+    </div>
+    <div sec:authorize="hasRole('ADMIN')">
+        <a th:href="@{'/main/allEmployees/'}">Сотрудники</a>
+    </div>
+    <a style="flex-grow: 1; text-align: right; margin-right: 3%" th:href="@{'/logout'}">Выход</a>
+</div>
+</form>
+</body>
+<body>
+<table class=" table table-hover">
+
+    <h3>Добавить пользователя</h3>
+    <div class="container">
+        <form th:action="@{/main/addUser}"
+              th:object="${user}" method="post">
+            <label>
+                <input th:field="${user.id}" placeholder="id" hidden>
+            </label>
+
+            <label>
+                <input th:field="${user.userName}" placeholder="surname">
+            </label>
+
+            <label>
+                <input th:field="${user.password}" placeholder="name">
+            </label>
+
+            <label>
+                <input th:field="${user.firstName}" placeholder="position">
+            </label>
+
+            <label>
+                <input th:field="${user.lastName}" placeholder="address">
+            </label>
+
+            <label>
+                <input th:field="${user.email}" placeholder="email">
+            </label>
+
+            <label>
+                <input th:field="${user.phone}" placeholder="phone">
+            </label>
+
+            <button type="submit">Добавить</button>
+        </form>
+    </div>
+
+
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Имя пользователя</th>
+        <th>Пароль</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>email</th>
+        <th>Номер телефона</th>
+    </tr>
+    </thead>
+    <span>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.userName}"></td>
+            <td th:text="${user.password}"></td>
+            <td th:text="${user.firstName}"></td>
+            <td th:text="${user.lastName}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.phone}"></td>
+            <td>
+                <div sec:authorize="hasRole('ADMIN')">
+            <a th:href="@{'/main/deleteUser/' + ${user.id}}" th:text="Удалить"></a>
+                <div sec:authorize="hasRole('ADMIN')">
+        <a th:href="@{'/main/editEmployee/' + ${user.id}}" th:text="Изменить"></a>
+    </div>
+        </td>
+    </span>
+    </tr>
+    </tbody>
+    </span>
+</table>
+
+<br>
+</body>
+</html>
