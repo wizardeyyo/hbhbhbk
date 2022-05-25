@@ -3,6 +3,7 @@ package com.example.demo.controllers;
 import com.example.demo.entities.*;
 import com.example.demo.services.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -65,7 +66,8 @@ public class MainController {
     }
     @PostMapping("/addUser")
     public String addUser(@ModelAttribute("user") User user){
-           userService.save(user);
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        userService.save(user);
         return "redirect:/main/AllUsers";
     }
 
@@ -282,6 +284,7 @@ public class MainController {
     }
     @PostMapping("editUser")
     public  String editUser(@ModelAttribute("user")User user){
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         userService.save(user);
         return "redirect:/main/allUsers";
     }
