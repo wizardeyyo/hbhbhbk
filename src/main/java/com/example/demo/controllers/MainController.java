@@ -68,7 +68,7 @@ public class MainController {
     public String addUser(@ModelAttribute("user") User user){
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         userService.save(user);
-        return "redirect:/main/AllUsers";
+        return "redirect:/main/allUsers";
     }
 
 
@@ -282,6 +282,10 @@ public class MainController {
     @GetMapping("/editUser/{id}")
     public String editUserById(Model model, @PathVariable("id")Long id){
         User user = userService.findById(id);
+
+        model.addAttribute("roles", List.of(
+                new Role(1L, "ROLE_USER"),
+                new Role(2L, "ROLE_ADMIN")));
         model.addAttribute("user", user);
         return "admin/editUser";
     }
