@@ -9,4 +9,13 @@ import java.util.List;
 
 @Service
 public interface UserService extends UserDetailsService {
+    User findByUserName(String name);
+
+    List<User> findAll();
+
+    void deleteById(Long id);
+
+    void save(User user);
+
+    User findById(Long id);
 }

@@ -3,15 +3,11 @@ package com.example.demo.controllers;
 import com.example.demo.entities.*;
 import com.example.demo.services.*;
 import lombok.RequiredArgsConstructor;
-import org.aspectj.weaver.ast.Or;
-import org.springframework.scheduling.Trigger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-import static org.aspectj.apache.bcel.Constants.types;
 
 
 @Controller
@@ -25,7 +21,7 @@ public class MainController {
     private final ProductService productService;
     private final SupplierService supplierService;
     private final TypeService typeService;
-    private final UserServiceImpl userService;
+    private final UserService userService;
 
     @GetMapping
     public String adminMain() {
