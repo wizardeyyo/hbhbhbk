@@ -10,7 +10,10 @@
     <a th:href="@{'/main/allOrders/'}">Заказы</a>
     <a th:href="@{'/main/allProducts/'}">Товары</a>
     <a th:href="@{'/main/allSuppliers/'}">Поставщики</a>
-    <a th:href="@{'/main/allClients/'}">Клиенты</a>
+    <a th:href="@{'/main/allClients/'}">Клиенты
+        <div sec:authorize="hasRole('ADMIN')">
+            <a th:href="@{'/main/allUsers/'}">Пользователи</a>
+        </div>
     <div sec:authorize="hasRole('ADMIN')">
         <a th:href="@{'/main/allTypes/'}">Категории</a>
     </div>

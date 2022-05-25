@@ -36,19 +36,19 @@
             </label>
 
             <label>
-                <input th:field="${user.userName}" placeholder="surname">
+                <input th:field="${user.userName}" placeholder="username">
             </label>
 
             <label>
-                <input th:field="${user.password}" placeholder="name">
+                <input th:field="${user.password}" placeholder="password">
             </label>
 
             <label>
-                <input th:field="${user.firstName}" placeholder="position">
+                <input th:field="${user.firstName}" placeholder="firstname">
             </label>
 
             <label>
-                <input th:field="${user.lastName}" placeholder="address">
+                <input th:field="${user.lastName}" placeholder="lastname">
             </label>
 
             <label>
@@ -89,7 +89,7 @@
                 <div sec:authorize="hasRole('ADMIN')">
             <a th:href="@{'/main/deleteUser/' + ${user.id}}" th:text="Удалить"></a>
                 <div sec:authorize="hasRole('ADMIN')">
-        <a th:href="@{'/main/editEmployee/' + ${user.id}}" th:text="Изменить"></a>
+        <a th:href="@{'/main/editUser/' + ${user.id}}" th:text="Изменить"></a>
     </div>
         </td>
     </span>

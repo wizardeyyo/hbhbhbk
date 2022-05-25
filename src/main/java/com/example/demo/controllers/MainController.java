@@ -278,12 +278,12 @@ public class MainController {
     public String editUserById(Model model, @PathVariable("id")Long id){
         User user = userService.findById(id);
         model.addAttribute("user", user);
-        return "redirect:/main/allUsers";
+        return "admin/editUser";
     }
     @PostMapping("editUser")
     public  String editUser(@ModelAttribute("user")User user){
         userService.save(user);
-        return "redirect:/main/AllUsers";
+        return "redirect:/main/allUsers";
     }
 }
 
