@@ -20,7 +20,10 @@
     <div sec:authorize="hasRole('ADMIN')">
         <a th:href="@{'/main/allEmployees/'}">Сотрудники</a>
     </div>
-    <a style="flex-grow: 1; text-align: right; margin-right: 3%" th:href="@{'/logout'}">Выход</a>
+    <a style="flex-grow: 1; text-align: right; margin-right: 3%"
+
+       th:href="@{'/logout'}">Выход</a>
+
 </div>
 </form>
 </body>
@@ -31,9 +34,11 @@
     <div class="container">
         <form th:action="@{/main/addUser}"
               th:object="${user}" method="post">
+
             <label>
                 <input th:field="${user.id}" placeholder="id" hidden>
             </label>
+
 
             <label>
                 <input th:field="${user.userName}" placeholder="username">
@@ -43,7 +48,7 @@
                 <input th:field="${user.password}" placeholder="password">
             </label>
             <select th:field="${user.roles}">
-                <option th:each="role : ${roles}"
+                <option th:each="role: ${roles}"
                         th:text="${role.roleName}"
                         th:value="${role.getId()}">
                 </option>
