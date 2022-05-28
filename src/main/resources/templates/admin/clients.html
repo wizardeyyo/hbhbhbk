@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Клиенты</title>
+    <link th:href="@{../../styles/style.css}" rel="stylesheet" type="text/css" />
 </head>
-<body>
-<div>Клиенты</div>
-<div style="display: flex; flex-direction: row; gap: 16px;" >
+<body style="margin-top: 0px;margin-bottom: 0px;margin-left: 0px;margin-right: 0px;">
+<div th:class="header" style="padding-left: 8px;padding-top: 8px;padding-bottom: 4px">Клиенты</div>
+<div th:class="header" style="display: flex; flex-direction: row; gap: 16px;" >
+    <a style="padding-left: 8px" th:href="@{'/main/'}">Главная страница</a>
     <a th:href="@{'/main/allOrders/'}">Заказы</a>
     <a th:href="@{'/main/allProducts/'}">Товары</a>
     <a th:href="@{'/main/allSuppliers/'}">Поставщики</a>
@@ -19,6 +21,7 @@
     </div>
     <div sec:authorize="hasRole('ADMIN')">
     <a th:href="@{'/main/allEmployees/'}">Сотрудники</a>
+        <p></p>
     </div>
     <a style="flex-grow: 1; text-align: right; margin-right: 3%" th:href="@{'/logout'}">Выход</a>
 </div>

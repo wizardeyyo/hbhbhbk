@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Заказы</title>
+    <link th:href="@{../../styles/style.css}" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div>Заказы</div>
 <div style="display: flex; flex-direction: row; gap: 16px;" >
+    <a th:href="@{'/main/'}">Главная страница</a>
     <a th:href="@{'/main/allOrders/'}">Заказы</a>
     <a th:href="@{'/main/allProducts/'}">Товары</a>
     <a th:href="@{'/main/allSuppliers/'}">Поставщики</a>

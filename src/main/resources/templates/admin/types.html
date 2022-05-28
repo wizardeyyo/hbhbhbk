@@ -2,11 +2,13 @@
 <html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Клиенты</title>
+    <title>Категории</title>
+    <link th:href="@{../../styles/style.css}" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<div>Клиенты</div>
+<div>Категории</div>
 <div style="display: flex; flex-direction: row; gap: 16px;" >
+    <a th:href="@{'/main/'}">Главная страница</a>
     <a th:href="@{'/main/allOrders/'}">Заказы</a>
     <a th:href="@{'/main/allProducts/'}">Товары</a>
     <a th:href="@{'/main/allSuppliers/'}">Поставщики</a>
