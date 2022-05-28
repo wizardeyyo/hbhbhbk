@@ -49,4 +49,17 @@ public class Role {
     public int hashCode() {
         return getClass().hashCode();
     }
+
+    @Override
+    public String toString() {
+        switch (roleName){
+            case "ROLE_USER" -> {
+                return "Пользователь";
+            }
+            case "ROLE_ADMIN" -> {
+                return "Администратор";
+            }
+        }
+        return null;
+    }
 }
