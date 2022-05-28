@@ -51,8 +51,8 @@
             </label>
             <select th:field="${user.roles}">
                 <option th:each="role: ${roles}"
-                        th:text="${role.roleName}"
-                        th:value="${role}">
+                        th:text="${role.roleName == 'ROLE_USER' ? 'Пользователь' : 'Администратор'}"
+                        th:value="${role.id}">
                 </option>
             </select>
             <label>

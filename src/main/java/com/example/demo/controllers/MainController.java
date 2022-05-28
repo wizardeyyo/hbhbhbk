@@ -23,6 +23,7 @@ public class MainController {
     private final SupplierService supplierService;
     private final TypeService typeService;
     private final UserService userService;
+    private final RoleService roleService;
 
     @GetMapping
     public String adminMain() {
@@ -149,9 +150,7 @@ public class MainController {
         User user = new User();
         List<User> users  = userService.findAll();
         model.addAttribute("user", user);
-        model.addAttribute("roles", List.of(
-                new Role(1L, "ROLE_USER"),
-                new Role(2L, "ROLE_ADMIN")));
+        model.addAttribute("roles", roleService.findAll());
         model.addAttribute("users", users);
         return "admin/users";
     }
@@ -283,9 +282,7 @@ public class MainController {
     public String editUserById(Model model, @PathVariable("id")Long id){
         User user = userService.findById(id);
 
-        model.addAttribute("roles", List.of(
-                new Role(1L, "ROLE_USER"),
-                new Role(2L, "ROLE_ADMIN")));
+        model.addAttribute("roles", roleService.findAll());
         model.addAttribute("user", user);
         return "admin/editUser";
     }
