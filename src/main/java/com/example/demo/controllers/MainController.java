@@ -264,6 +264,9 @@ public class MainController {
     }
     @PostMapping("editOrder")
     public String editOrder(@ModelAttribute("order")Order order){
+        Product product = order.getProduct();
+        product.setInStock(product.getInStock() - order.getAmount());
+        order.setProduct(product);
         orderService.save(order);
         return "redirect:/main/allOrders";
     }
