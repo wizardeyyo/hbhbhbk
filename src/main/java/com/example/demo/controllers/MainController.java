@@ -175,6 +175,10 @@ public class MainController {
 
     @GetMapping("/deleteOrder/{id}")
     public String deleteOrder(@PathVariable("id") Long id) {
+        Order order = orderService.findById(id);
+        Product product = order.getProduct();
+        product.setInStock(product.getInStock() + order.getAmount());
+        order.setProduct(product);
         orderService.deleteById(id);
         return "redirect:/main/allOrders";
     }
