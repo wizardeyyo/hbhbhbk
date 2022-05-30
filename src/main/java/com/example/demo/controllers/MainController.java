@@ -5,6 +5,7 @@ import com.example.demo.services.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,6 +34,9 @@ public class MainController {
 
     @PostMapping("/addOrder")
     public String addGroup(@ModelAttribute("order") Order order) {
+        Product product = order.getProduct();
+        product.setInStock(product.getInStock() - order.getAmount());
+        order.setProduct(product);
         orderService.save(order);
         return "redirect:/main/allOrders";
     }
@@ -263,11 +267,16 @@ public class MainController {
         return "admin/editOrder";
     }
     @PostMapping("editOrder")
+    @Transactional
     public String editOrder(@ModelAttribute("order")Order order){
+        Order previousOrder = orderService.findById(order.getId());
+        int previousOrderAmount = previousOrder.getAmount();
+        int actualOrderAmount = order.getAmount();
         Product product = order.getProduct();
-        product.setInStock(product.getInStock() - order.getAmount());
+        product.setInStock(product.getInStock() + previousOrderAmount - actualOrderAmount);
         order.setProduct(product);
         orderService.save(order);
+
         return "redirect:/main/allOrders";
     }
     @GetMapping("/editType/{id}")
