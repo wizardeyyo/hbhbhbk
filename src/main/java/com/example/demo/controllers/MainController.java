@@ -7,8 +7,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -27,7 +29,9 @@ public class MainController {
     private final RoleService roleService;
 
     @GetMapping
-    public String adminMain() {
+    public String adminMain(Model model) {
+        List<Client> clients = clientService.findAll();
+        model.addAttribute("lastClient", clients.get(clients.size() - 1));
         return "admin/AdminPage";
     }
 
@@ -90,11 +94,11 @@ public class MainController {
         model.addAttribute("products", products);
         return "admin/orders";
     }
-    @GetMapping("/")
-    public String allMain(Model model) {
-        model.addAttribute("clients", clientService.findAll());
-        return "admin/AdminPage";
-    }
+//    @GetMapping("/")
+//    public String allMain(Model model) {
+//        model.addAttribute("clients", clientService.findAll());
+//        return "admin/AdminPage";
+//    }
 
 
     @GetMapping("/allClients")
