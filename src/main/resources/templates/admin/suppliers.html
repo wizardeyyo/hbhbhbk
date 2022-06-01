@@ -5,10 +5,10 @@
     <title>Поставщики</title>
     <link th:href="@{../../styles/style.css}" rel="stylesheet" type="text/css" />
 </head>
-<body>
-<div>Поставщики</div>
-<div style="display: flex; flex-direction: row; gap: 16px;" >
-    <a th:href="@{'/main/'}">Главная страница</a>
+<body style="margin-left: 0px;margin-top: 0px;margin-bottom: 0px;margin-right: 0px;">
+<div th:class="header" style="padding-left: 8px;padding-top: 8px;padding-bottom: 4px">Поставщики</div>
+<div th:class="header" style="display: flex; flex-direction: row; gap: 16px;" >
+    <a style="padding-left: 8px" th:href="@{'/main/'}">Главная страница</a>
     <a th:href="@{'/main/allOrders/'}">Заказы</a>
     <a th:href="@{'/main/allProducts/'}">Товары</a>
     <a th:href="@{'/main/allSuppliers/'}">Поставщики</a>
@@ -20,13 +20,14 @@
         <a th:href="@{'/main/allTypes/'}">Категории</a>
     </div>
     <div sec:authorize="hasRole('ADMIN')">
-    <a th:href="@{'/main/allEmployees/'}">Сотрудники</a>
+        <a th:href="@{'/main/allEmployees/'}">Сотрудники</a>
     </div>
+    <p></p>
     <a style="flex-grow: 1; text-align: right; margin-right: 3%" th:href="@{'/logout'}">Выход</a>
 </div>
 </form>
 </body>
-<body>
+<body th:class="main">
 <table class=" table table-hover">
 
     <h3>Добавить поставщика</h3>
@@ -38,27 +39,27 @@
             </label>
 
             <label>
-                <input th:field="${supplier.brand}" placeholder="brand">
+                <input th:field="${supplier.brand}" placeholder="Брэнд">
             </label>
 
             <label>
-                <input th:field="${supplier.name}" placeholder="name">
+                <input th:field="${supplier.name}" placeholder="Имя поставщика">
             </label>
 
             <label>
-                <input th:field="${supplier.position}" placeholder="position">
+                <input th:field="${supplier.position}" placeholder="Должность">
             </label>
 
             <label>
-                <input th:field="${supplier.address}" placeholder="Address">
+                <input th:field="${supplier.address}" placeholder="Адрес">
             </label>
 
             <label>
-                <input th:field="${supplier.phone}" placeholder="phone">
+                <input th:field="${supplier.phone}" placeholder="Номер телефона">
             </label>
 
             <label>
-                <input th:field="${supplier.email}" placeholder="email">
+                <input th:field="${supplier.email}" placeholder="e-mail">
             </label>
 
             <button type="submit">Добавить</button>
@@ -68,19 +69,20 @@
 
     <thead>
     <tr>
-        <th>ID</th>
+        <th style="padding-left: 8px">ID</th>
         <th>Брэнд</th>
         <th>Имя поставщика</th>
         <th>Должность</th>
         <th>Адрес</th>
         <th>Телефон</th>
         <th>e-mail</th>
+        <th>Действие</th>
     </tr>
     </thead>
     <span>
         <tbody>
         <tr th:each="supplier : ${suppliers}">
-            <td th:text="${supplier.id}"></td>
+            <td style="padding-left: 8px" th:text="${supplier.id}"></td>
             <td th:text="${supplier.brand}"></td>
             <td th:text="${supplier.name}"></td>
             <td th:text="${supplier.position}"></td>

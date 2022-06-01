@@ -6,30 +6,28 @@
     <title>Складской учет</title>
 </head>
 <body style="margin-top: 0px;margin-bottom: 0px;margin-left: 0px;margin-right: 0px;">
-<th:block th:class="header">
 <div th:class="header" style="padding-left: 8px;padding-top: 8px;padding-bottom: 4px">Складской учет</div>
 <div th:class="header" style="display: flex; flex-direction: row; gap: 16px;" >
-
-    <a th:class="links" style="padding-left: 8px" th:href="@{'/main/'}">Главная страница</a>
-    <a th:class="links" th:href="@{'/main/allOrders/'}">Заказы</a>
-    <a th:class="links" th:href="@{'/main/allProducts/'}">Товары</a>
-    <a th:class="links" th:href="@{'/main/allSuppliers/'}">Поставщики</a>
-    <a th:class="links" th:href="@{'/main/allClients/'}">Клиенты</a>
+    <a style="padding-left: 8px" th:href="@{'/main/'}">Главная страница</a>
+    <a th:href="@{'/main/allOrders/'}">Заказы</a>
+    <a th:href="@{'/main/allProducts/'}">Товары</a>
+    <a th:href="@{'/main/allSuppliers/'}">Поставщики</a>
+    <a th:href="@{'/main/allClients/'}">Клиенты</a>
     <div sec:authorize="hasRole('ADMIN')">
-        <a th:class="links" th:href="@{'/main/allUsers/'}">Пользователи</a>
+        <a th:href="@{'/main/allUsers/'}">Пользователи</a>
     </div>
     <div sec:authorize="hasRole('ADMIN')">
-        <a th:class="links" th:href="@{'/main/allTypes/'}">Категории</a>
+        <a th:href="@{'/main/allTypes/'}">Категории</a>
     </div>
     <div sec:authorize="hasRole('ADMIN')">
-        <a th:class="links" th:href="@{'/main/allEmployees/'}">Сотрудники</a>
+        <a th:href="@{'/main/allEmployees/'}">Сотрудники</a>
     </div>
+<p></p>
 
     <a style="flex-grow: 1; text-align: right; margin-right: 3%"
-
-       th:class="links" th:href="@{'/logout'}">Выход</a>
-</th:block>
-
+       th:href="@{'/logout'}">Выход</a>
 </div>
+</body>
+<body th:class="main">
 </body>
 </html>

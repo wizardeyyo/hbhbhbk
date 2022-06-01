@@ -5,10 +5,10 @@
     <title>Заказы</title>
     <link th:href="@{../../styles/style.css}" rel="stylesheet" type="text/css" />
 </head>
-<body>
-<div>Заказы</div>
-<div style="display: flex; flex-direction: row; gap: 16px;" >
-    <a th:href="@{'/main/'}">Главная страница</a>
+<body th:class="main" style="margin-top: 0px;margin-bottom: 0px;margin-left: 0px;margin-right: 0px;">
+<div th:class="header" style="padding-left: 8px;padding-top: 8px;padding-bottom: 4px">Заказы</div>
+<div th:class="header" style="display: flex; flex-direction: row; gap: 16px;" >
+    <a style="padding-left: 8px" th:href="@{'/main/'}">Главная страница</a>
     <a th:href="@{'/main/allOrders/'}">Заказы</a>
     <a th:href="@{'/main/allProducts/'}">Товары</a>
     <a th:href="@{'/main/allSuppliers/'}">Поставщики</a>
@@ -20,13 +20,17 @@
         <a th:href="@{'/main/allTypes/'}">Категории</a>
     </div>
     <div sec:authorize="hasRole('ADMIN')">
-    <a th:href="@{'/main/allEmployees/'}">Сотрудники</a>
+        <a th:href="@{'/main/allEmployees/'}">Сотрудники</a>
     </div>
-    <a style="flex-grow: 1; text-align: right; margin-right: 3%" th:href="@{'/logout'}">Выход</a>
+    <p></p>
+
+    <a style="flex-grow: 1; text-align: right; margin-right: 3%"
+
+       th:href="@{'/logout'}">Выход</a>
 </div>
 </form>
 </body>
-<body>
+<body th:class="main">
 <table class=" table table-hover">
 
     <h3>Добавить заказ</h3>
@@ -65,23 +69,23 @@
             </label>
 
             <label>
-                <input th:field="${order.amount}" placeholder="amount" required>
+                <input th:field="${order.amount}" placeholder="Количество" required>
             </label>
 
             <label>
-                <input type="date" th:field="${order.shippingDate}" placeholder="shippingDate">
+                <input type="date" th:field="${order.shippingDate}" placeholder="Дата отгрузки">
             </label>
 
             <label>
-                <input type="date" th:field="${order.paymentDate}" placeholder="paymentDate">
+                <input type="date" th:field="${order.paymentDate}" placeholder="Дата платежа">
             </label>
 
             <label>
-                <input th:field="${order.receiverName}" placeholder="receiverName">
+                <input th:field="${order.receiverName}" placeholder="Имя получателя">
             </label>
 
             <label>
-                <input th:field="${order.receiverAddress}" placeholder="receiverAddress">
+                <input th:field="${order.receiverAddress}" placeholder="Адрес получателя">
             </label>
             <button type="submit">Добавить</button>
         </form>
@@ -90,7 +94,7 @@
 
     <thead>
     <tr>
-        <th>ID</th>
+        <th style="padding-left: 8px">ID</th>
         <th>Сотрудник</th>
         <th>Клиент</th>
         <th>Товар</th>
@@ -98,7 +102,7 @@
         <th>Цена</th>
         <th>Дата отгрузки</th>
         <th>Дата платежа</th>
-        <th>Покучатель</th>
+        <th>Получатель</th>
         <th>Адрес получателя</th>
         <th>Действие</th>
     </tr>
@@ -106,7 +110,7 @@
     <span>
         <tbody>
         <tr th:each="order : ${orders}">
-            <td th:text="${order.id}"></td>
+            <td style="padding-left: 8px" th:text="${order.id}"></td>
             <td th:text="${order.employee.surname}"></td>
             <td th:text="${order.client.clientName}"></td>
             <td th:text="${order.product.name}"></td>

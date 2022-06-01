@@ -41,8 +41,6 @@ public class Client {
 
     private String workingConditions;
 
-    private Double price;
-
     private String notes;
 
     @Override

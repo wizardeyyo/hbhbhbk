@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Редактирование поставщика</title>
+    <link th:href="@{../../../styles/style.css}" rel="stylesheet" type="text/css" />
 </head>
-<body>
+<body th:class="main">
+<h3>Изменить клиента</h3>
 <div class="container">
     <form th:action="@{/main/editClient}"
           th:object="${client}" method="post">
@@ -16,7 +18,6 @@
         <p>Номер телефона <input th:field="${client.phone}" placeholder="phone"></p>
         <p>Должность <input th:field="${client.position}" placeholder="position"><p>
         <p>Номер контракта <input th:field="${client.numberOfContracts}" placeholder="number of contract"></p>
-        <p>Цена <input th:field="${client.price}" placeholder="price"></p>
         <p>Условия работы <input th:field="${client.workingConditions}" placeholder="working conditions"></p>
         <p>Заметка <input th:field="${client.notes}" placeholder="notes"></p>
         <button type="submit">Готово</button>

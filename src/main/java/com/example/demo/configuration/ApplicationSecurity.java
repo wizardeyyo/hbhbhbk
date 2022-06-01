@@ -41,7 +41,7 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/", "/home").hasRole("ROLE_USER")
 //                .antMatchers("*/edit*/*").hasRole("ADMIN")
                 .antMatchers("/", "/main").permitAll()
-                .antMatchers("/", "/main/edit*/*").hasRole("ADMIN")
+                .antMatchers("/", "/main/edit*/*","/main/allUsers/", "/main/allUsers", "/main/allEmployees","/main/allEmployees/","/main/allTypes/", "/main/allTypes").hasRole("ADMIN")
                 .and()
                 // some more method calls
                 .formLogin()

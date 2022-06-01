@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/html"
+      xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Клиенты</title>
     <link th:href="@{../../styles/style.css}" rel="stylesheet" type="text/css" />
 </head>
 <body style="margin-top: 0px;margin-bottom: 0px;margin-left: 0px;margin-right: 0px;">
+<form>
 <div th:class="header" style="padding-left: 8px;padding-top: 8px;padding-bottom: 4px">Клиенты</div>
 <div th:class="header" style="display: flex; flex-direction: row; gap: 16px;" >
+
     <a style="padding-left: 8px" th:href="@{'/main/'}">Главная страница</a>
+
     <a th:href="@{'/main/allOrders/'}">Заказы</a>
     <a th:href="@{'/main/allProducts/'}">Товары</a>
     <a th:href="@{'/main/allSuppliers/'}">Поставщики</a>
@@ -20,14 +24,16 @@
         <a th:href="@{'/main/allTypes/'}">Категории</a>
     </div>
     <div sec:authorize="hasRole('ADMIN')">
-    <a th:href="@{'/main/allEmployees/'}">Сотрудники</a>
-        <p></p>
+        <a th:href="@{'/main/allEmployees/'}">Сотрудники</a>
     </div>
-    <a style="flex-grow: 1; text-align: right; margin-right: 3%" th:href="@{'/logout'}">Выход</a>
+    <p></p>
+    <a style="flex-grow: 1; text-align: right; margin-right: 3%"
+       th:href="@{'/logout'}"><span>Выход</span></a>
+
 </div>
 </form>
 </body>
-<body>
+<body th:class="main" style="margin-top: 8px;margin-bottom: 8px;margin-left: 8px;margin-right: 8px;">
 <table class=" table table-hover">
 
     <h3>Добавить клиента</h3>
@@ -38,35 +44,32 @@
                 <input th:field="${client.id}" placeholder="id" hidden>
             </label>
             <label>
-                <input th:field="${client.brand}" placeholder="brand">
+                <input th:field="${client.brand}" placeholder="Брэнд">
             </label>
             <label>
-                <input th:field="${client.address}" placeholder="address">
+                <input th:field="${client.address}" placeholder="Адрес">
             </label>
             <label>
-                <input th:field="${client.clientName}" placeholder="client name">
+                <input th:field="${client.clientName}" placeholder="Имя клиента">
             </label>
 
             <label>
                 <input th:field="${client.email}" placeholder="e-mail">
             </label>
             <label>
-                <input th:field="${client.phone}" placeholder="phone">
+                <input th:field="${client.phone}" placeholder="Номер телефона">
             </label>
             <label>
-                <input th:field="${client.position}" placeholder="position">
+                <input th:field="${client.position}" placeholder="Должность">
             </label>
             <label>
-                <input th:field="${client.numberOfContracts}" placeholder="number of contract">
+                <input th:field="${client.numberOfContracts}" placeholder="Номер контракта">
             </label>
             <label>
-                <input th:field="${client.price}" placeholder="price">
+                <input th:field="${client.workingConditions}" placeholder="Условия работы">
             </label>
             <label>
-                <input th:field="${client.workingConditions}" placeholder="working conditions">
-            </label>
-            <label>
-                <input th:field="${client.notes}" placeholder="notes">
+                <input th:field="${client.notes}" placeholder="Примечания">
             </label>
             <button type="submit">Добавить</button>
         </form>
@@ -75,7 +78,7 @@
 
     <thead>
     <tr>
-        <th>ID</th>
+        <th style="padding-left: 8px">ID</th>
         <th>Брэнд</th>
         <th>Адрес</th>
         <th>Имя Клиента</th>
@@ -83,15 +86,15 @@
         <th>Номер телефона</th>
         <th>Должность</th>
         <th>Номер контракта</th>
-        <th>Цены</th>
         <th>Условия работы</th>
         <th>Примечания</th>
+        <th>Действие</th>
     </tr>
     </thead>
     <span>
         <tbody>
         <tr th:each="client : ${clients}">
-            <td th:text="${client.id}"></td>
+            <td style="padding-left: 8px" th:text="${client.id}"></td>
             <td th:text="${client.brand}"></td>
             <td th:text="${client.address}"></td>
             <td th:text="${client.clientName}"></td>
@@ -99,11 +102,10 @@
             <td th:text="${client.phone}"></td>
             <td th:text="${client.position}"></td>
             <td th:text="${client.numberOfContracts}"></td>
-            <td th:text="${client.price}"></td>
             <td th:text="${client.workingConditions}"></td>
             <td th:text="${client.notes}"></td>
             <td>
-            <a th:href="@{'/main/deleteClient/' + ${client.id}}" th:text="Удалить"></a>
+            <a  th:href="@{'/main/deleteClient/' + ${client.id}}" th:text="Удалить"></a>
                     <div sec:authorize="hasRole('ADMIN')">
         <a th:href="@{'/main/editClient/' + ${client.id}}" th:text="Изменить"></a>
     </div>

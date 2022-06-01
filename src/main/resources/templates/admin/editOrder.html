@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Редактирование поставщика</title>
+    <link th:href="@{../../../styles/style.css}" rel="stylesheet" type="text/css" />
 </head>
-<body>
+<body th:class="main">
 <div class="container">
+    <h3>Редактировать заказ</h3>
     <form th:action="@{/main/editOrder}"
           th:object="${order}" method="post">
 

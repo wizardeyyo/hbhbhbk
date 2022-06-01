@@ -76,7 +76,6 @@ public class MainController {
         return "redirect:/main/allUsers";
     }
 
-
     @GetMapping("/allOrders")
     public String allOrders(Model model) {
         Order order = new Order();
@@ -90,6 +89,11 @@ public class MainController {
         model.addAttribute("employees", employees);
         model.addAttribute("products", products);
         return "admin/orders";
+    }
+    @GetMapping("/")
+    public String allMain(Model model) {
+        model.addAttribute("clients", clientService.findAll());
+        return "admin/AdminPage";
     }
 
 

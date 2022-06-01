@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Редактирование пользователя</title>
+    <link th:href="@{../../../styles/style.css}" rel="stylesheet" type="text/css" />
 </head>
-<body>
+<body th:class="main">
+<h3>Редактировать пользователя</h3>
 <div class="container">
     <form th:action="@{/main/editUser}"
           th:object="${user}" method="post">
         <input th:field="${user.id}" placeholder="id" hidden>
         <p>Имя пользователя <input th:field="${user.userName}" placeholder="username"></p>
         <p>Пароль <input th:field="${user.password}" placeholder="password"></p>
-        <select th:field="${user.roles}">
+        <div>Роль <select th:field="${user.roles}">
             <option th:each="role : ${roles}"
-                    th:text="${role.roleName}"
+                    th:text="${role.roleName == 'ROLE_USER' ? 'Пользователь' : 'Администратор'}"}
                     th:value="${role.getId()}">
             </option>
+    </select></div>
         <p>Имя <input th:field="${user.firstName}" placeholder="firstname"></p>
         <p>Фамилия <input th:field="${user.lastName}" placeholder="lastname"></p>
         <p>Телефон <input th:field="${user.phone}" placeholder="phone"></p>
