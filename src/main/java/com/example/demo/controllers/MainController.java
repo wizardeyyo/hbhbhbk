@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.entities.*;
+import com.example.demo.repositories.ProductStatsRepository;
 import com.example.demo.services.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -11,6 +12,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -27,6 +29,8 @@ public class MainController {
     private final TypeService typeService;
     private final UserService userService;
     private final RoleService roleService;
+
+    private final ProductStatsService productStatsService;
 
     @GetMapping
     public String adminMain(Model model) {
@@ -45,6 +49,7 @@ public class MainController {
         model.addAttribute("lastType", types.get(types.size() - 1));
         model.addAttribute("lastEmployee", employees.get(employees.size() - 1));
 
+        model.addAttribute("productStatistics", productStatsService.getStatistics());
         return "admin/AdminPage";
     }
 
