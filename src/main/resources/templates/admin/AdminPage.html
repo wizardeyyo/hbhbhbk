@@ -221,4 +221,35 @@
     </table>
 
 </body>
+</body>
+<h3>Товары по категориям</h3>
+<table class=" table table-hover">
+    <thead>
+    <tr>
+        <th style="padding-left: 8px">Категория</th>
+        <th>На складе</th>
+        <th>Цена всех товаров</th>
+        <th>% соотношения цены товаров</th>
+
+
+    </tr>
+    </thead>
+    <span>
+        <tbody>
+        <tr th:each="order : ${StatusInWork}">
+            <td th:text="${order.employee.surname}"></td>
+            <td th:text="${order.client.clientName}"></td>
+            <td th:text="${order.product.name}"></td>
+            <td th:text="${order.amount}"></td>
+            <td th:text="${order.product.price}*${order.amount}"></td>
+            <td th:text="${order.shippingDate}"></td>
+            <td th:text="${order.paymentDate}"></td>
+            <td th:text="${order.status}"></td>
+            <td th:text="${order.receiverName}"></td>
+            <td th:text="${order.receiverAddress}"></td>
+            <td>
+    </span>
+</table>
+
+</body>
 </html>

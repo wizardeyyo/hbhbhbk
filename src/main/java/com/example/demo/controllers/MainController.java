@@ -45,6 +45,7 @@ public class MainController {
         model.addAttribute("lastProduct", products.get(products.size() - 1));
         model.addAttribute("products", productService.findAll());
         model.addAttribute("types",typeService.findAll());
+        model.addAttribute("StatusInWork", orderService.findAllInWork());
         model.addAttribute("lastSupplier", suppliers.get(suppliers.size() - 1));
         model.addAttribute("lastType", types.get(types.size() - 1));
         model.addAttribute("lastEmployee", employees.get(employees.size() - 1));

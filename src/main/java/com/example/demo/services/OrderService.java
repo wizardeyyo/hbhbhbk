@@ -36,6 +36,7 @@ public class OrderService {
 
     public List<Order> findAllInWork(){
         return orderRepository.findAllByStatus("В работе");
+
     }
 
     public List<Order> findAllOrdersInThisWeek(){
