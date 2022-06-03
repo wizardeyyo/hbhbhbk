@@ -36,7 +36,7 @@ public class Client {
 
     private String email;
 
-    private Integer numberOfContracts;
+    private String numberOfContracts;
 
     private String workingConditions;
 

@@ -11,12 +11,16 @@ import java.util.List;
 public interface ProductStatsRepository extends JpaRepository<ProductStats, String> {
 
     @Query(nativeQuery = true,
-            value = " select category, sum, prc*100 prc from " +
+            value = " select category, sum, stock, prc*100 prc from " +
                     "( select distinct t.category, sum(p.price * p.in_stock) " +
                     "over " +
                     "(partition by t.category order by  t.category) sum," +
                     " sum(p.price * p.in_stock) over (partition by t.category order by  t.category) / sum(p.price * p.in_stock)" +
-                    " over () prc from products p" +
+                    " over " + "()prc," +
+                    "sum(p.in_stock)"+
+                    "over"+
+                    "(partition by t.category order by t.category) stock" +
+                    " from products p" +
                     " join types t on t.id = p.type_id " +
                     "where" +
                     " p.in_stock > 0) subquery ")

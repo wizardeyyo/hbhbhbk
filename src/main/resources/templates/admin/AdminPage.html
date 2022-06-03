@@ -198,4 +198,27 @@
 </table>
 </div>
 </body>
+    <h3>Товары по категориям</h3>
+    <table class=" table table-hover">
+        <thead>
+        <tr>
+            <th style="padding-left: 8px">Категория</th>
+            <th>На складе</th>
+            <th>Цена всех товаров</th>
+            <th>% соотношения цены товаров</th>
+
+
+        </tr>
+        </thead>
+        <span>
+        <tbody>
+        <tr th:each="productStats : ${productStatistics}">
+            <td th:text="${productStats.category}"></td>
+            <td th:text="${productStats.stock}"></td>
+            <td th:text="${productStats.sum}"></td>
+            <td th:text="${productStats.prc}"></td>
+    </span>
+    </table>
+
+</body>
 </html>

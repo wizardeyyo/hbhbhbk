@@ -53,4 +53,5 @@ public class Order {
     private String receiverAddress;
 
     private Integer amount;
+
 }

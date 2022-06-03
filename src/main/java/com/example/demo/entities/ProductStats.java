@@ -6,6 +6,7 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.text.DecimalFormat;
 import java.util.Objects;
 
 @Entity
@@ -21,6 +22,8 @@ public class ProductStats {
     private Double sum;
 
     private Double prc;
+
+    private Integer stock;
 
     @Override
     public boolean equals(Object o) {
