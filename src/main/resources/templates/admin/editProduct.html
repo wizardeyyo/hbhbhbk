@@ -10,26 +10,40 @@
     <h3>Редактировать товар</h3>
     <form th:action="@{/main/editProduct}"
           th:object="${product}" method="post">
+        <label>
             <input th:field="${product.id}" placeholder="id" hidden>
-            <p>Название <input th:field="${product.name}" placeholder="name"></p>
-            <div>Поставщик <select th:field="${product.supplier}">
-                <option th:each="supplier : ${suppliers}"
-                        th:text="${supplier.brand}"
-                        th:value="${supplier.getId()}">
-                </option>
-            </select>
+        </label>
+        <p>Название <label>
+            <input th:field="${product.name}" placeholder="name">
+        </label></p>
+            <div>Поставщик <label>
+                <select th:field="${product.supplier}">
+                    <option th:each="supplier : ${suppliers}"
+                            th:text="${supplier.brand}"
+                            th:value="${supplier.getId()}">
+                    </option>
+                </select>
+            </label>
             </div>
         <p></p>
-        <div>Категория <select th:field="${product.type}">
-                <option th:each="type : ${types}"
-                        th:text="${type.category}"
-                        th:value="${type.getId()}">
-                </option>
-            </select>
+        <div>Категория <label>
+            <select th:field="${product.type}">
+                    <option th:each="type : ${types}"
+                            th:text="${type.category}"
+                            th:value="${type.getId()}">
+                    </option>
+                </select>
+        </label>
         </div>
-            <p>Цена <input th:field="${product.price}" placeholder="price"> </p>
-        <p>Единица измерения <input th:field="${product.unit}" placeholder="unit"></p>
-        <p>В наличии <input th:field="${product.inStock}" placeholder="inStock"></p>
+            <p>Цена <label>
+                <input th:field="${product.price}" placeholder="price">
+            </label></p>
+        <p>Единица измерения <label>
+            <input th:field="${product.unit}" placeholder="unit">
+        </label></p>
+        <p>В наличии <label>
+            <input th:field="${product.inStock}" placeholder="inStock">
+        </label></p>
         <button type="submit">Готово</button>
         <a th:href="@{'/main/allProducts/'}"><button>Назад</button></a>
     </form>

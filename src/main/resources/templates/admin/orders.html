@@ -5,7 +5,7 @@
     <title>Заказы</title>
     <link th:href="@{../../styles/style.css}" rel="stylesheet" type="text/css" />
 </head>
-<body th:class="main" style="margin-top: 0px;margin-bottom: 0px;margin-left: 0px;margin-right: 0px;">
+<body th:class="main" style="margin: 0;">
 <div th:class="header" style="padding-left: 8px;padding-top: 8px;padding-bottom: 4px">Заказы</div>
 <div th:class="header" style="display: flex; flex-direction: row; gap: 16px;" >
     <a style="padding-left: 8px" th:href="@{'/main/'}">Главная страница</a>
@@ -28,7 +28,6 @@
 
        th:href="@{'/logout'}">Выход</a>
 </div>
-</form>
 </body>
 <body th:class="main">
 <table class=" table table-hover">
@@ -81,6 +80,10 @@
             </label>
 
             <label>
+                <input th:field="${order.status}" placeholder="Статус заказа">
+            </label>
+
+            <label>
                 <input th:field="${order.receiverName}" placeholder="Имя получателя">
             </label>
 
@@ -102,6 +105,7 @@
         <th>Цена</th>
         <th>Дата отгрузки</th>
         <th>Дата платежа</th>
+        <th>Статус заказа</th>
         <th>Получатель</th>
         <th>Адрес получателя</th>
         <th>Действие</th>
@@ -118,6 +122,7 @@
             <td th:text="${order.product.price}*${order.amount}"></td>
             <td th:text="${order.shippingDate}"></td>
             <td th:text="${order.paymentDate}"></td>
+            <td th:text="${order.status}"></td>
             <td th:text="${order.receiverName}"></td>
             <td th:text="${order.receiverAddress}"></td>
             <td>
@@ -126,9 +131,6 @@
         <a th:href="@{'/main/editOrder/' + ${order.id}}" th:text="Изменить"></a>
     </div>
         </td>
-    </span>
-    </tr>
-    </tbody>
     </span>
 </table>
 

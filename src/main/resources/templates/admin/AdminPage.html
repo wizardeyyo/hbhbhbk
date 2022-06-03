@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="">
 <head>
     <meta charset="UTF-8">
     <link th:href="@{../styles/style.css}" rel="stylesheet" type="text/css" />
     <title>Складской учет</title>
 </head>
-<body style="margin-top: 0px;margin-bottom: 0px;margin-left: 0px;margin-right: 0px;">
+<body style="margin: 0;">
 <div th:class="header" style="padding-left: 8px;padding-top: 8px;padding-bottom: 4px">Складской учет</div>
 <div th:class="header" style="display: flex; flex-direction: row; gap: 16px;" >
     <a style="padding-left: 8px" th:href="@{'/main/'}">Главная страница</a>
@@ -29,5 +29,173 @@
 </div>
 </body>
 <body th:class="main">
+<h3>Последний измененный/добавленный заказ</h3>
+<table class=" table table-hover">
+    <thead>
+    <tr>
+        <th style="padding-left: 8px">ID</th>
+        <th>Сотрудник</th>
+        <th>Клиент</th>
+        <th>Товар</th>
+        <th>Количество</th>
+        <th>Цена</th>
+        <th>Дата отгрузки</th>
+        <th>Дата платежа</th>
+        <th>Статус заказа</th>
+        <th>Получатель</th>
+        <th>Адрес получателя</th>
+    </tr>
+    </thead>
+    <span>
+        <tbody>
+        <tr th:each="order : ${lastOrder}">
+            <td style="padding-left: 8px" th:text="${lastOrder.id}"></td>
+            <td th:text="${lastOrder.employee.surname}"></td>
+            <td th:text="${lastOrder.client.clientName}"></td>
+            <td th:text="${lastOrder.product.name}"></td>
+            <td th:text="${lastOrder.amount}"></td>
+            <td th:text="${lastOrder.product.price}*${lastOrder.amount}"></td>
+            <td th:text="${lastOrder.shippingDate}"></td>
+            <td th:text="${lastOrder.paymentDate}"></td>
+            <td th:text="${lastOrder.status}"></td>
+            <td th:text="${lastOrder.receiverName}"></td>
+            <td th:text="${lastOrder.receiverAddress}"></td>
+            <td>
+    </td>
+    </span>
+</table>
+<table class=" table table-hover">
+    <h3>Последний измененный/добавленный товар</h3>
+    <thead>
+    <tr>
+        <th style="padding-left: 8px">ID</th>
+        <th>Название</th>
+        <th>Поставщик</th>
+        <th>Категория</th>
+        <th>Цена</th>
+        <th>Единица измерения</th>
+        <th>На складе</th>
+    </tr>
+    </thead>
+    <span>
+        <tbody>
+        <tr th:each="product : ${lastProduct}">
+            <td style="padding-left: 8px" th:text="${lastProduct.id}"></td>
+            <td th:text="${lastProduct.name}"></td>
+            <td th:text="${lastProduct.supplier.brand}"></td>
+            <td th:text="${lastProduct.type.category}"></td>
+            <td th:text="${lastProduct.price}"></td>
+            <td th:text="${lastProduct.unit}"></td>
+            <td th:text="${lastProduct.inStock}"></td>
+    </span>
+</table>
+<table class=" table table-hover">
+    <h3>Последний измененный/добавленный поставщик</h3>
+    <thead>
+    <tr>
+        <th style="padding-left: 8px">ID</th>
+        <th>Брэнд</th>
+        <th>Имя поставщика</th>
+        <th>Должность</th>
+        <th>Адрес</th>
+        <th>Телефон</th>
+        <th>e-mail</th>
+    </tr>
+    </thead>
+    <span>
+        <tbody>
+        <tr th:each="supplier : ${lastSupplier}">
+            <td style="padding-left: 8px" th:text="${lastSupplier.id}"></td>
+            <td th:text="${lastSupplier.brand}"></td>
+            <td th:text="${lastSupplier.name}"></td>
+            <td th:text="${lastSupplier.position}"></td>
+            <td th:text="${lastSupplier.address}"></td>
+            <td th:text="${lastSupplier.phone}"></td>
+            <td th:text="${lastSupplier.email}"></td>
+        </tr>
+        </span>
+</table>
+<h3>Последний измененный/добавленный клиент</h3>
+<table class=" table table-hover">
+    <thead>
+    <tr>
+        <th style="padding-left: 8px">ID</th>
+        <th>Брэнд</th>
+        <th>Адрес</th>
+        <th>Имя Клиента</th>
+        <th>e-mail</th>
+        <th>Номер телефона</th>
+        <th>Должность</th>
+        <th>Номер контракта</th>
+        <th>Условия работы</th>
+        <th>Примечания</th>
+    </tr>
+    </thead>
+    <span>
+        <tbody>
+        <tr th:each="client : ${lastClient}">
+            <td style="padding-left: 8px" th:text="${lastClient.id}"></td>
+            <td th:text="${lastClient.brand}"></td>
+            <td th:text="${lastClient.address}"></td>
+            <td th:text="${lastClient.clientName}"></td>
+            <td th:text="${lastClient.email}"></td>
+            <td th:text="${lastClient.phone}"></td>
+            <td th:text="${lastClient.position}"></td>
+            <td th:text="${lastClient.numberOfContracts}"></td>
+            <td th:text="${lastClient.workingConditions}"></td>
+            <td th:text="${lastClient.notes}"></td>
+            <td>
+    </td>
+    </span>
+</table>
+<div sec:authorize="hasRole('ADMIN')">
+<h3>Последний измененная/добавленная категория</h3>
+<table class=" table table-hover">
+        <thead>
+        <tr>
+            <th style="padding-left: 8px">ID</th>
+            <th>Категория</th>
+            <th>Описания</th>
+        </tr>
+        </thead>
+        <span>
+        <tbody>
+        <tr th:each="type : ${lastType}">
+            <td style="padding-left: 8px" th:text="${lastType.id}"></td>
+            <td th:text="${lastType.category}"></td>
+            <td th:text="${lastType.description}"></td>
+    </span>
+</table>
+</div>
+<div sec:authorize="hasRole('ADMIN')">
+<h3>Последний измененный/добавленный сотрудник</h3>
+<table class=" table table-hover">
+<thead>
+<tr>
+    <th style="padding-left: 8px">ID</th>
+    <th>Фамилия</th>
+    <th>Имя</th>
+    <th>Должность</th>
+    <th>Адрес</th>
+    <th>Дата рождения</th>
+    <th>email</th>
+    <th>Номер телефона</th>
+
+</tr>
+</thead>
+<span>
+        <tbody>
+        <tr th:each="employee : ${lastEmployee}">
+            <td style="padding-left: 8px" th:text="${lastEmployee.id}"></td>
+            <td th:text="${lastEmployee.surname}"></td>
+            <td th:text="${lastEmployee.name}"></td>
+            <td th:text="${lastEmployee.position}"></td>
+            <td th:text="${lastEmployee.address}"></td>
+            <td th:text="${lastEmployee.dateOfBirth}"></td>
+            <td th:text="${lastEmployee.email}"></td>
+            <td th:text="${lastEmployee.phone}"></td>
+    </span>
+</table>
+</div>
 </body>
 </html>

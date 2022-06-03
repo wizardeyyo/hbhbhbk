@@ -48,6 +48,8 @@ public class Order {
 
     private String receiverName;
 
+    private String status;
+
     private String receiverAddress;
 
     private Integer amount;

@@ -31,7 +31,20 @@ public class MainController {
     @GetMapping
     public String adminMain(Model model) {
         List<Client> clients = clientService.findAll();
+        List<Order> orders = orderService.findAll();
+        List<Product> products = productService.findAll();
+        List<Supplier> suppliers = supplierService.findAll();
+        List<Type> types = typeService.findAll();
+        List<Employee> employees = employeeService.findAll();
         model.addAttribute("lastClient", clients.get(clients.size() - 1));
+        model.addAttribute("lastOrder", orders.get(orders.size() - 1));
+        model.addAttribute("lastProduct", products.get(products.size() - 1));
+        model.addAttribute("products", productService.findAll());
+        model.addAttribute("types",typeService.findAll());
+        model.addAttribute("lastSupplier", suppliers.get(suppliers.size() - 1));
+        model.addAttribute("lastType", types.get(types.size() - 1));
+        model.addAttribute("lastEmployee", employees.get(employees.size() - 1));
+
         return "admin/AdminPage";
     }
 

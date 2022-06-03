@@ -5,12 +5,14 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.Immutable;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "products")
+@Immutable
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -19,6 +21,7 @@ import java.util.Objects;
 @Builder
 @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
 @BatchSize(size=20)
+
 public class Product {
 
     @Id

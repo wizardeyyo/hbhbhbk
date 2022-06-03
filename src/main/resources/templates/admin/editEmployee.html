@@ -10,14 +10,30 @@
 <div class="container">
     <form th:action="@{/main/editEmployee}"
           th:object="${employee}" method="post">
+        <label>
             <input th:field="${employee.id}" placeholder="id" hidden>
-        <p>Фамилия <input th:field="${employee.surname}" placeholder="surname"></p>
-        <p>Имя <input th:field="${employee.name}" placeholder="name"></p>
-        <p>Должность <input th:field="${employee.position}" placeholder="position"></p>
-        <p>Адрес <input th:field="${employee.address}" placeholder="address"></p>
-        <p>Дата рождения <input type="date" th:field="${employee.dateOfBirth}" placeholder="dateOfBirth"></p>
-        <p>e-mail <input th:field="${employee.email}" placeholder="email"></p>
-        <p>Номер телефона <input th:field="${employee.phone}" placeholder="phone"></p>
+        </label>
+        <p>Фамилия <label>
+            <input th:field="${employee.surname}" placeholder="surname">
+        </label></p>
+        <p>Имя <label>
+            <input th:field="${employee.name}" placeholder="name">
+        </label></p>
+        <p>Должность <label>
+            <input th:field="${employee.position}" placeholder="position">
+        </label></p>
+        <p>Адрес <label>
+            <input th:field="${employee.address}" placeholder="address">
+        </label></p>
+        <p>Дата рождения <label>
+            <input type="date" th:field="${employee.dateOfBirth}" placeholder="dateOfBirth">
+        </label></p>
+        <p>e-mail <label>
+            <input th:field="${employee.email}" placeholder="email">
+        </label></p>
+        <p>Номер телефона <label>
+            <input th:field="${employee.phone}" placeholder="phone">
+        </label></p>
         <button type="submit">Готово</button>
         <a th:href="@{'/main/allEmployees/'}"><button>Назад</button></a>
     </form>

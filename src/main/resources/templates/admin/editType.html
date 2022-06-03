@@ -10,9 +10,15 @@
 <div class="container">
     <form th:action="@{/main/editType}"
           th:object="${type}" method="post">
-        <input th:field="${type.id}" placeholder="id" hidden>
-        <p>Фамилия <input th:field="${type.category}" placeholder="category"></p>
-        <p>Имя <input th:field="${type.description}" placeholder="description"></p>
+        <label>
+            <input th:field="${type.id}" placeholder="id" hidden>
+        </label>
+        <p>Фамилия <label>
+            <input th:field="${type.category}" placeholder="category">
+        </label></p>
+        <p>Имя <label>
+            <input th:field="${type.description}" placeholder="description">
+        </label></p>
         <button type="submit">Готово</button>
         <a th:href="@{'/main/allTypes/'}"><button>Назад</button></a>
     </form>

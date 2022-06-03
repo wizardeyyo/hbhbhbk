@@ -17,9 +17,12 @@ h3 {
 }
 td{
     padding-left: 4px;
+    text-align: center;
+
 }
 th{
     padding-left: 4px;
+    text-align: center;
 }
 input{
     width: 115px;

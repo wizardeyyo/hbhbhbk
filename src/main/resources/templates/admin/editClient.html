@@ -10,16 +10,37 @@
 <div class="container">
     <form th:action="@{/main/editClient}"
           th:object="${client}" method="post">
+        <label>
             <input th:field="${client.id}" placeholder="id" hidden>
-        <p>Брэнд <input th:field="${client.brand}" placeholder="brand"></p>
-        <p>Адрес <input th:field="${client.address}" placeholder="address"></p>
-        <p>Имя клиента <input th:field="${client.clientName}" placeholder="client name"></p>
-        <p>e-mail <input th:field="${client.email}" placeholder="e-mail"></p>
-        <p>Номер телефона <input th:field="${client.phone}" placeholder="phone"></p>
-        <p>Должность <input th:field="${client.position}" placeholder="position"><p>
-        <p>Номер контракта <input th:field="${client.numberOfContracts}" placeholder="number of contract"></p>
-        <p>Условия работы <input th:field="${client.workingConditions}" placeholder="working conditions"></p>
-        <p>Заметка <input th:field="${client.notes}" placeholder="notes"></p>
+        </label>
+        <p>Брэнд <label>
+            <input th:field="${client.brand}" placeholder="brand">
+        </label></p>
+        <p>Адрес <label>
+            <input th:field="${client.address}" placeholder="address">
+        </label></p>
+        <p>Имя клиента <label>
+            <input th:field="${client.clientName}" placeholder="client name">
+        </label></p>
+        <p>e-mail <label>
+            <input th:field="${client.email}" placeholder="e-mail">
+        </label></p>
+        <p>Номер телефона <label>
+            <input th:field="${client.phone}" placeholder="phone">
+        </label></p>
+        <p>Должность <label>
+            <input th:field="${client.position}" placeholder="position">
+        </label>
+        <p>
+        <p>Номер контракта <label>
+            <input th:field="${client.numberOfContracts}" placeholder="number of contract">
+        </label></p>
+        <p>Условия работы <label>
+            <input th:field="${client.workingConditions}" placeholder="working conditions">
+        </label></p>
+        <p>Заметка <label>
+            <input th:field="${client.notes}" placeholder="notes">
+        </label></p>
         <button type="submit">Готово</button>
         <a th:href="@{'/main/allClients/'}"><button>Назад</button></a>
     </form>

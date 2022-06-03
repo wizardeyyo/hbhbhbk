@@ -5,7 +5,7 @@
     <title>Сотрудники</title>
     <link th:href="@{../../styles/style.css}" rel="stylesheet" type="text/css" />
 </head>
-<body th:class="main" style="margin-top: 0px;margin-bottom: 0px;margin-left: 0px;margin-right: 0px;">
+<body th:class="main" style="margin: 0 0 0 0;">
 <div sec:authorize="hasRole('ADMIN')">
 <div th:class="header" style="padding-left: 8px;padding-top: 8px;padding-bottom: 4px">Сотрудники</div>
 <div th:class="header" style="display: flex; flex-direction: row; gap: 16px;" >
@@ -29,7 +29,7 @@
 
        th:href="@{'/logout'}">Выход</a>
 </div>
-</form>
+</div>
 </body>
 <body th:class="main">
 <table class=" table table-hover">
@@ -106,12 +106,8 @@
     </div>
         </td>
     </span>
-    </tr>
-    </tbody>
-    </span>
 </table>
 
 <br>
-</div>
 </body>
 </html>

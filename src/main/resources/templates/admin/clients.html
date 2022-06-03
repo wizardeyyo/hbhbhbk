@@ -6,7 +6,7 @@
     <title>Клиенты</title>
     <link th:href="@{../../styles/style.css}" rel="stylesheet" type="text/css" />
 </head>
-<body style="margin-top: 0px;margin-bottom: 0px;margin-left: 0px;margin-right: 0px;">
+<body style="margin: 0;">
 <form>
 <div th:class="header" style="padding-left: 8px;padding-top: 8px;padding-bottom: 4px">Клиенты</div>
 <div th:class="header" style="display: flex; flex-direction: row; gap: 16px;" >
@@ -33,7 +33,7 @@
 </div>
 </form>
 </body>
-<body th:class="main" style="margin-top: 8px;margin-bottom: 8px;margin-left: 8px;margin-right: 8px;">
+<body th:class="main" style="margin: 8px;">
 <table class=" table table-hover">
 
     <h3>Добавить клиента</h3>
@@ -110,9 +110,6 @@
         <a th:href="@{'/main/editClient/' + ${client.id}}" th:text="Изменить"></a>
     </div>
         </td>
-    </span>
-    </tr>
-    </tbody>
     </span>
 </table>
 

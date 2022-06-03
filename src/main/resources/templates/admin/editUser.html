@@ -10,19 +10,35 @@
 <div class="container">
     <form th:action="@{/main/editUser}"
           th:object="${user}" method="post">
-        <input th:field="${user.id}" placeholder="id" hidden>
-        <p>Имя пользователя <input th:field="${user.userName}" placeholder="username"></p>
-        <p>Пароль <input th:field="${user.password}" placeholder="password"></p>
-        <div>Роль <select th:field="${user.roles}">
-            <option th:each="role : ${roles}"
-                    th:text="${role.roleName == 'ROLE_USER' ? 'Пользователь' : 'Администратор'}"}
-                    th:value="${role.getId()}">
-            </option>
-    </select></div>
-        <p>Имя <input th:field="${user.firstName}" placeholder="firstname"></p>
-        <p>Фамилия <input th:field="${user.lastName}" placeholder="lastname"></p>
-        <p>Телефон <input th:field="${user.phone}" placeholder="phone"></p>
-        <p>e-mail <input th:field="${user.email}" placeholder="email"></p>
+        <label>
+            <input th:field="${user.id}" placeholder="id" hidden>
+        </label>
+        <p>Имя пользователя <label>
+            <input th:field="${user.userName}" placeholder="username">
+        </label></p>
+        <p>Пароль <label>
+            <input th:field="${user.password}" placeholder="password">
+        </label></p>
+        <div>Роль <label>
+            <select th:field="${user.roles}">
+                <option th:each="role : ${roles}"
+                        th:text="${role.roleName == 'ROLE_USER' ? 'Пользователь' : 'Администратор'}"}
+                        th:value="${role.getId()}">
+                </option>
+        </select>
+        </label></div>
+        <p>Имя <label>
+            <input th:field="${user.firstName}" placeholder="firstname">
+        </label></p>
+        <p>Фамилия <label>
+            <input th:field="${user.lastName}" placeholder="lastname">
+        </label></p>
+        <p>Телефон <label>
+            <input th:field="${user.phone}" placeholder="phone">
+        </label></p>
+        <p>e-mail <label>
+            <input th:field="${user.email}" placeholder="email">
+        </label></p>
         <button type="submit">Готово</button>
         <a th:href="@{'/main/allUsers/'}"><button>Назад</button></a>
     </form>

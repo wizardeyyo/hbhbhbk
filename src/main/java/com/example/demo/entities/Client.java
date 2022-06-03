@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.BatchSize;
-
 import javax.persistence.*;
 import java.util.Objects;
 

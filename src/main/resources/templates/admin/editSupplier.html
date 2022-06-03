@@ -10,13 +10,27 @@
 <div class="container">
     <form th:action="@{/main/editSupplier}"
           th:object="${supplier}" method="post">
-        <input th:field="${supplier.id}" placeholder="id" hidden>
-        <p>Брэнд <input th:field="${supplier.brand}" placeholder="brand"></p>
-        <p>Имя поставщика <input th:field="${supplier.name}" placeholder="name"></p>
-        <p>Должность <input th:field="${supplier.position}" placeholder="position"></p>
-        <p>Адрес <input th:field="${supplier.address}" placeholder="Address"></p>
-        <p>Телефон <input th:field="${supplier.phone}" placeholder="phone"></p>
-        <p>e-mail <input th:field="${supplier.email}" placeholder="email"></p>
+        <label>
+            <input th:field="${supplier.id}" placeholder="id" hidden>
+        </label>
+        <p>Брэнд <label>
+            <input th:field="${supplier.brand}" placeholder="brand">
+        </label></p>
+        <p>Имя поставщика <label>
+            <input th:field="${supplier.name}" placeholder="name">
+        </label></p>
+        <p>Должность <label>
+            <input th:field="${supplier.position}" placeholder="position">
+        </label></p>
+        <p>Адрес <label>
+            <input th:field="${supplier.address}" placeholder="Address">
+        </label></p>
+        <p>Телефон <label>
+            <input th:field="${supplier.phone}" placeholder="phone">
+        </label></p>
+        <p>e-mail <label>
+            <input th:field="${supplier.email}" placeholder="email">
+        </label></p>
         <button type="submit">Готово</button>
         <a th:href="@{'/main/allSuppliers/'}"><button>Назад</button></a>
     </form>
