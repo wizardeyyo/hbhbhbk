@@ -6,7 +6,13 @@ import lombok.RequiredArgsConstructor;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
+
+import static java.time.DayOfWeek.MONDAY;
+import static java.time.DayOfWeek.SUNDAY;
+import static java.time.temporal.TemporalAdjusters.nextOrSame;
+import static java.time.temporal.TemporalAdjusters.previousOrSame;
 
 @Service
 @RequiredArgsConstructor
@@ -31,5 +37,12 @@ public class OrderService {
     public List<Order> findAllInWork(){
         return orderRepository.findAllByStatus("В работе");
 
+    }
+
+    public List<Order> findAllOrdersInThisWeek(){
+        LocalDate today = LocalDate.now();
+        LocalDate monday = today.with(previousOrSame(MONDAY));
+        LocalDate sunday = today.with(nextOrSame(SUNDAY));
+        return orderRepository.findAllByShippingDateBetween(monday, sunday);
     }
 }
