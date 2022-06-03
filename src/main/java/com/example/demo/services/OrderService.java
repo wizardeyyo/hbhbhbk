@@ -27,4 +27,8 @@ public class OrderService {
     public void deleteById(Long id){
         orderRepository.deleteById(id);
     }
+
+    public List<Order> findAllInWork(){
+        return orderRepository.findAllByStatus("В работе");
+    }
 }
